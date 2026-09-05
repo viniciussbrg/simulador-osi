@@ -19,7 +19,7 @@ Grupo _X_
 - [ ] Os sete casos de validacao foram reproduzidos e os valores conferem
 - [ ] Os registros de eventos dos sete casos estao em `registros/`
 - [ ] Os tutoriais e a documentacao tecnica estao em `docs/`
-- [ ] Nao ha `__pycache__`, ambiente virtual nem pasta `build/` no commit
+- [ ] Nao ha artefatos de compilacao, cache nem ambiente virtual no commit
 
 ## Casos reproduzidos
 
