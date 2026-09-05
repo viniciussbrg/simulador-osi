@@ -1,0 +1,24 @@
+# Artefatos de compilacao e empacotamento
+build/
+dist/
+out/
+bin/
+obj/
+target/
+*.o
+*.obj
+*.class
+
+# Ambientes e caches de linguagem
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+node_modules/
+
+# Editores e sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
