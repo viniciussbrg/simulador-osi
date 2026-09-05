@@ -15,7 +15,7 @@ Grupo _X_
 
 - [ ] O destino do Pull Request e a branch do meu grupo, nao a `main`
 - [ ] O `README.md` da raiz do fork esta preenchido, com autoria e instrucoes de execucao
-- [ ] O programa abre com dois cliques em uma maquina sem Python instalado
+- [ ] O programa abre com dois cliques em uma maquina sem o ambiente da linguagem instalado
 - [ ] Os sete casos de validacao foram reproduzidos e os valores conferem
 - [ ] Os registros de eventos dos sete casos estao em `registros/`
 - [ ] Os tutoriais e a documentacao tecnica estao em `docs/`
