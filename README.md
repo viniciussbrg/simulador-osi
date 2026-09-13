@@ -1,99 +1,45 @@
-# Simulador do Modelo OSI
+# Simulador OSI
 
-Especificacao aberta, com casos de validacao numericos, para construir um
-simulador do modelo OSI de sete camadas sobre uma rede com multiplos
-roteadores.
+## Executar
 
-O simulador transporta uma mensagem entre dois computadores e mostra, passo a
-passo, o que cada camada de cada dispositivo faz com a unidade de dados que
-recebe: os cabecalhos sendo acrescentados na descida e removidos na subida, o
-par de enderecos fisicos sendo trocado a cada salto enquanto o par de
-enderecos logicos permanece fixo, e a decisao de rota acontecendo na camada 3
-de cada roteador.
+Extraia o ZIP completo e abra **SimuladorOSI.exe** com dois cliques. Mantenha **topologia.json** na mesma pasta. É necessário Windows 10/11 e um navegador com JavaScript; não é necessário instalar Python ou acessar a internet durante o uso.
 
-A linguagem e livre, assim como a arquitetura interna e a forma de
-apresentacao. O que esta fixado sao os numeros: quem seguir a especificacao
-produz os mesmos resultados de qualquer outra implementacao, em qualquer
-linguagem.
+Escolha **E2**, clique **Preparar** e **Ir ao resultado**. Confira 42 B úteis, 368 B transmitidos, quatro quadros e eficiência global de 11,41%. Use **Encerrar** para finalizar; fechar apenas a aba mantém o programa ativo.
 
-## A rede
+## Compilar
 
-Tres redes locais, quatro roteadores, cinco computadores. Os custos de enlace
-tornam deterministica a escolha de rota, e os enderecos sao fixos, de modo que
-duas implementacoes distintas possam ser comparadas linha a linha.
+Na máquina de desenvolvimento, instale Python 3.10 ou superior e execute **build_windows.bat**. O script também reconhece o Python instalado pela Microsoft Store. A primeira compilação exige internet para instalar o PyInstaller 6.22.2.
 
-## Casos de validacao
+O resultado fica em **release**, em uma nova pasta e um ZIP com data e hora. Abra o executável dessa nova pasta para testar as alterações. A distribuição inclui o código e os scripts para repetir o build. Para executar os fontes diretamente, use `python main.py`.
 
-Uma implementacao correta reproduz estes valores. A mensagem de referencia tem
-42 octetos, exceto em E7.
+O build cria um ambiente em `.venv-build` e arquivos temporários em `build`. Eles não entram no ZIP; podem ser apagados após a compilação. Apagar o ambiente exige instalar novamente a dependência no próximo build. Os builds anteriores permanecem em `release`.
 
-| # | Caso | Quadros | Octetos transmitidos | Eficiencia |
-|---|------|---------|----------------------|------------|
-| E1 | Entrega direta | 1 | 92 | 45,7% |
-| E2 | Entrega indireta, tres roteadores | 4 | 368 | 11,4% |
-| E3 | Demultiplexacao por porta | 8 | 736 | 11,4% |
-| E4 | Falha de enlace e desvio de rota | 4 | 368 | 11,4% |
-| E5 | Destino inalcancavel | 1 | 92 | sem entrega |
-| E6 | Erro de bit detectado na camada 2 | 3 | 276 | sem entrega |
-| E7 | Mensagem longa, tres segmentos | 12 | 968 | 10,3% |
+## Projeto
 
-E1 e E2 transportam exatamente a mesma mensagem e diferem apenas no numero de
-enlaces. A eficiencia cai de 45,7% para 11,4% sem que um unico octeto de dado
-a mais tenha sido enviado. Essa diferenca e o custo do empilhamento, e e o que
-o projeto existe para tornar visivel.
+Comunicação de Dados, professor Vinícius S. Borges.
 
-## Documentos
+O programa demonstra as sete camadas OSI, encapsulamento, rotas de menor custo, endereços, segmentação, cifra didática, falhas e métricas. 
 
-| Documento | Conteudo |
-|-----------|----------|
-| [Especificacao](./docs/especificacao.pdf) | Topologia, enderecos, requisitos, convencoes, os sete casos de validacao com os valores esperados e o passo a passo da entrega |
-| [Guia de documentacao](./docs/guia_de_documentacao.pdf) | O que escrever no README, nos tutoriais e na documentacao tecnica |
+Computadores processam L1–L7
 
-## Como participar
+Roteadores processam L1–L3
 
-O fluxo e **fork + pull request**. A `main` guarda apenas a especificacao;
-cada implementacao vive na branch do proprio grupo.
-
-1. Fazer o **fork** deste repositorio;
-2. Clonar o fork na maquina local (apenas um integrante do grupo precisa);
-3. Desenvolver o projeto inteiro no fork, seguindo a estrutura sugerida na
-   especificacao;
-4. Enviar commits ao longo do desenvolvimento, e nao em um unico envio no
-   final;
-5. Abrir um **Pull Request** do fork para a **branch do seu grupo** neste
-   repositorio, com o titulo no formato
-   `Entrega - Grupo X - Nome dos integrantes`;
-6. Aguardar a revisao. Apos aprovacao, o trabalho e incorporado a branch
-   dedicada do grupo, preservando a autoria de todos os commits.
-
-O passo a passo detalhado, com os comandos e as telas, esta na
-[especificacao](./docs/especificacao.pdf).
-
-## Branches
-
-| Branch | Conteudo |
-|--------|----------|
-| `main` | Especificacao, guia de documentacao e este README |
-| `grupo1` a `grupo8` | Uma branch por grupo, com a entrega aprovada |
-
-Nenhum grupo faz commit direto neste repositorio, abre Pull Request para a
-`main` ou altera a branch de outro grupo. Uma entrega nessas condicoes e
-devolvida sem analise.
-
-## Estrutura
-
-    simulador-osi/
-    |-- README.md
-    |-- .gitignore
-    `-- docs/
-        |-- especificacao.pdf
-        `-- guia_de_documentacao.pdf
-
-A estrutura do projeto em si, dentro do fork de cada grupo, esta descrita na
-especificacao.
-
-## Duvidas e discussao
-
-Abra uma **Issue**. Perguntas sobre a especificacao, casos ambiguos e
-divergencias de valores sao discutidos ali, ficam visiveis para todos e evitam
-que a mesma questao seja respondida varias vezes.
+| Arquivo ou pasta | Responsabilidade |
+|---|---|
+| SimuladorOSI.exe | Programa compilado, com o interpretador e a interface incorporados |
+| topologia.json | Dispositivos, endereços, enlaces, custos e cenários; pode ser substituído sem recompilar |
+| main.py | Inicia o servidor local e abre o navegador |
+| osi/__init__.py | Número da versão |
+| osi/camadas.py | Sete classes de camada, cifra, segmentação, remontagem e encaminhamento |
+| osi/pdu.py | Formatos binários de segmento, pacote, quadro e bits |
+| osi/dispositivos.py | Hosts, roteadores e interfaces |
+| osi/rede.py | Validação do JSON, Dijkstra, tabelas e transmissão pelo enlace |
+| osi/simulador.py | Eventos, coordenação dos cenários e métricas |
+| osi/observacao.py | Detalhes didáticos dos cabeçalhos e contagem por quadro |
+| osi/visual.py | Servidor HTTP local e comandos da interface |
+| interface/index.html | Campos e painéis da tela |
+| interface/styles.css | Aparência da interface |
+| interface/app.js | Desenho, reprodução, pilhas OSI/TCP-IP e exportação do log |
+| build.py | Compilação e montagem do ZIP |
+| build_windows.bat | Localização do Python e início do build |
+| requirements-build.txt | Dependência de compilação |
