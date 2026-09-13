@@ -2,7 +2,13 @@
 
 ## Executar
 
-Extraia o ZIP completo e abra **SimuladorOSI.exe** com dois cliques. Mantenha **topologia.json** na mesma pasta. É necessário Windows 10/11 e um navegador com JavaScript; não é necessário instalar Python ou acessar a internet durante o uso.
+Extraia o ZIP completo e abra **SimuladorOSI.exe** com dois cliques. 
+
+Mantenha **topologia.json** na mesma pasta. 
+
+É necessário Windows 10/11 e um navegador com JavaScript
+
+Não é necessário instalar Python ou acessar a internet durante o uso.
 
 Escolha **E2**, clique **Preparar** e **Ir ao resultado**. Confira 42 B úteis, 368 B transmitidos, quatro quadros e eficiência global de 11,41%. Use **Encerrar** para finalizar; fechar apenas a aba mantém o programa ativo.
 
