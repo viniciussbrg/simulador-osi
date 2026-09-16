@@ -2,9 +2,9 @@
 
 ## Autoria, orientação e escopo
 
-O projeto descrito abaixo foi desenvolvido para a disciplina de Comunicação de Dados, ministrada pelo professor Vinícius Borges durante o 7º semestre de Engenharia da Computação da Faculdade Engenheiro Salvador Arena
+Este projeto foi desenvolvido como parte das atividades da disciplina de Comunicação de Dados, ministrada pelo Prof. Vinícius Borges no 7º semestre do curso de Engenharia da Computação da Faculdade Engenheiro Salvador Arena.
 
-Grupo:
+Autoria:
 
 | **Integrantes** | **RA** |
 |---|---|
