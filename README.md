@@ -29,9 +29,11 @@ Não é necessário instalar Python ou acessar a internet durante o uso
 
 Escolha **E2 / C2 - Entrega indireta**, clique em **Preparar** e escolha uma das opções para cada necessidade:
 
-**Ir ao resultado**: Verificar o resultado final imediatamente
-**Executar**: Verificar de forma contínua o progresso de transmissão da mensagem pela rede e em que camada está sendo executada cada etapa
-**Próximo passo**: Exibe cada um dos passos executados porém são demonstrados pausadamente e a cada clique no botão
+- **Ir ao resultado**: Verificar o resultado final imediatamente
+
+- **Executar**: Verificar de forma contínua o progresso de transmissão da mensagem pela rede e em que camada está sendo executada cada etapa
+
+- **Próximo passo**: Exibe cada um dos passos executados porém são demonstrados pausadamente e a cada clique no botão
 
 No final: Confira 42 B úteis, 368 B transmitidos, quatro quadros e eficiência global de 11,41%. 
 
