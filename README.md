@@ -8,10 +8,10 @@ Autoria:
 
 | **Integrantes** | **RA** |
 |---|---|
-| Lucas Junqueira | 082230029 |
-| Murilo Umbelino | 082230013 |
-| Victor Mendes | 082230015 |
-| Guilherme Alves | 082220014 |
+| Lucas Junqueira Gonçalves | 082230029 |
+| Murilo Umbelino Oliveira dos Santos | 082230013 |
+| Victor Mendes de Andrade Ferreira | 082230015 |
+| Guilherme Alves Barbosa | 082220014 |
 
 O Simulador OSI é um programa desenvolvido em Python para demonstrar a comunicação entre computadores e roteadores em uma rede. A interface permite acompanhar o percurso de uma mensagem, seu encapsulamento na origem, o encaminhamento pelos roteadores e o desencapsulamento no destino. Cada computador possui as sete camadas do modelo OSI, enquanto os roteadores operam com as camadas física, enlace e rede.
 
