@@ -19,7 +19,7 @@ O programa permite executar a simulação passo a passo ou de forma contínua, v
 
 ## Execução do programa
 
-Baixe o zip do projeto no GitHub e extraia-o completamente. Abra a nova pasta e execute o arquivo **SimuladorOSI.exe** com dois cliques
+Baixe o zip do projeto no GitHub e extraia-o completamente. Abra a nova pasta gerada após a extração e execute o arquivo **SimuladorOSI.exe** com dois cliques
 
 Mantenha **topologia.json** na mesma pasta 
 
