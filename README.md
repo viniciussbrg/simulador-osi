@@ -1,4 +1,4 @@
-**# Simulador OSI**
+# **Simulador OSI**
 
 ## Autoria, orientação e escopo
 
