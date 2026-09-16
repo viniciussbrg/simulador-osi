@@ -10,15 +10,9 @@ Mantenha **topologia.json** na mesma pasta.
 
 Não é necessário instalar Python ou acessar a internet durante o uso.
 
-Escolha **E2**, clique **Preparar** e **Ir ao resultado**. Confira 42 B úteis, 368 B transmitidos, quatro quadros e eficiência global de 11,41%. Use **Encerrar** para finalizar; fechar apenas a aba mantém o programa ativo.
+Escolha **E2**, clique **Preparar** e **Ir ao resultado**. Confira 42 B úteis, 368 B transmitidos, quatro quadros e eficiência global de 11,41%. 
 
-## Compilar
-
-Na máquina de desenvolvimento, instale Python 3.10 ou superior e execute **build_windows.bat**. O script também reconhece o Python instalado pela Microsoft Store. A primeira compilação exige internet para instalar o PyInstaller 6.22.2.
-
-O resultado fica em **release**, em uma nova pasta e um ZIP com data e hora. Abra o executável dessa nova pasta para testar as alterações. A distribuição inclui o código e os scripts para repetir o build. Para executar os fontes diretamente, use `python main.py`.
-
-O build cria um ambiente em `.venv-build` e arquivos temporários em `build`. Eles não entram no ZIP; podem ser apagados após a compilação. Apagar o ambiente exige instalar novamente a dependência no próximo build. Os builds anteriores permanecem em `release`.
+Use **Encerrar** para finalizar pois apenas fechar a aba do navegador mantém o programa ativo.
 
 ## Projeto
 
