@@ -27,19 +27,16 @@ Roteadores processam L1–L3
 | Arquivo ou pasta | Responsabilidade |
 |---|---|
 | SimuladorOSI.exe | Programa compilado, com o interpretador e a interface incorporados |
-| topologia.json | Dispositivos, endereços, enlaces, custos e cenários; pode ser substituído sem recompilar |
+| topologia.json | Dispositivos, endereços, enlaces, custos e cenários. Pode ser substituído sem recompilar |
 | main.py | Inicia o servidor local e abre o navegador |
 | osi/__init__.py | Número da versão |
 | osi/camadas.py | Sete classes de camada, cifra, segmentação, remontagem e encaminhamento |
 | osi/pdu.py | Formatos binários de segmento, pacote, quadro e bits |
 | osi/dispositivos.py | Hosts, roteadores e interfaces |
-| osi/rede.py | Validação do JSON, Dijkstra, tabelas e transmissão pelo enlace |
+| osi/rede.py | Validação do JSON, tabelas e transmissão pelo enlace |
 | osi/simulador.py | Eventos, coordenação dos cenários e métricas |
 | osi/observacao.py | Detalhes didáticos dos cabeçalhos e contagem por quadro |
 | osi/visual.py | Servidor HTTP local e comandos da interface |
 | interface/index.html | Campos e painéis da tela |
 | interface/styles.css | Aparência da interface |
 | interface/app.js | Desenho, reprodução, pilhas OSI/TCP-IP e exportação do log |
-| build.py | Compilação e montagem do ZIP |
-| build_windows.bat | Localização do Python e início do build |
-| requirements-build.txt | Dependência de compilação |
