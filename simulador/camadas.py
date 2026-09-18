@@ -4,6 +4,59 @@ class Camada:
     def __init__(self, dispositivo):
         self.dispositivo = dispositivo
 
+class CamadaAplicacao(Camada):
+    def descer(self, mensagem, ip_destino, p_origem, p_destino):
+        self.dispositivo.motor.registrar(self.dispositivo.nome, 7, "GERA", f"processo navegador, destino {ip_destino}", len(mensagem))
+        self.dispositivo.camadas[6].descer(PDU(mensagem, 0), ip_destino, p_origem, p_destino)
+        
+    def subir(self, pdu):
+        self.dispositivo.motor.registrar(self.dispositivo.nome, 7, "RECEBE", "mensagem processada", pdu.tamanho)
+
+class CamadaApresentacao(Camada):
+    def descer(self, pdu, ip_destino, p_origem, p_destino):
+        self.dispositivo.motor.registrar(self.dispositivo.nome, 6, "CODIFICA", "octetos UTF-8, conteúdo cifrado", pdu.tamanho)
+        self.dispositivo.camadas[5].descer(pdu, ip_destino, p_origem, p_destino)
+
+    def subir(self, pdu):
+        self.dispositivo.motor.registrar(self.dispositivo.nome, 6, "DECODIFICA", "octetos decifrados", pdu.tamanho)
+        self.dispositivo.camadas[7].subir(pdu.conteudo)
+
+class CamadaSessao(Camada):
+    def descer(self, pdu, ip_destino, p_origem, p_destino):
+        msg = Mensagem(pdu)
+        self.dispositivo.motor.registrar(self.dispositivo.nome, 5, "ABRE", "sessão estabelecida", msg.tamanho)
+        self.dispositivo.camadas[4].descer(msg, ip_destino, p_origem, p_destino)
+
+    def subir(self, pdu):
+        self.dispositivo.motor.registrar(self.dispositivo.nome, 5, "MANTEM", "sessão mantida", pdu.tamanho)
+        self.dispositivo.camadas[6].subir(pdu.conteudo)
+
+class CamadaTransporte(Camada):
+    def __init__(self, dispositivo):
+        super().__init__(dispositivo)
+        self.buffer_remontagem = {}
+
+    def descer(self, pdu, ip_destino, p_origem, p_destino):
+        tamanho_maximo = 40 
+        dados_str = str(pdu.conteudo.conteudo) 
+        partes = [dados_str[i:i+tamanho_maximo] for i in range(0, len(dados_str), tamanho_maximo)] if len(dados_str) > tamanho_maximo else [dados_str]
+
+        for i, parte in enumerate(partes):
+            segmento = Segmento(PDU(parte, pdu.tamanho - len(dados_str)), p_origem, p_destino, seq=i+1, total=len(partes))
+            self.dispositivo.motor.registrar(self.dispositivo.nome, 4, "SEGMENTA", f"porta {p_origem}->{p_destino}, seg {segmento.seq} de {segmento.total}", segmento.tamanho)
+            self.dispositivo.camadas[3].descer(segmento, ip_destino)
+
+    def subir(self, segmento):
+        self.dispositivo.motor.registrar(self.dispositivo.nome, 4, "REMONTA", f"recebeu segmento {segmento.seq}/{segmento.total}", segmento.tamanho)
+        chave = (segmento.porta_origem, segmento.porta_destino)
+        if chave not in self.buffer_remontagem: self.buffer_remontagem[chave] = []
+        self.buffer_remontagem[chave].append(segmento)
+        
+        if len(self.buffer_remontagem[chave]) == segmento.total:
+            self.dispositivo.motor.registrar(self.dispositivo.nome, 4, "ENTREGA", "segmentos remontados", segmento.tamanho * segmento.total)
+            self.dispositivo.camadas[5].subir(segmento.conteudo)
+            del self.buffer_remontagem[chave]
+
 class CamadaRede(Camada):
     def descer(self, segmento_ou_pacote, ip_destino=None):
         if isinstance(segmento_ou_pacote, Segmento):
