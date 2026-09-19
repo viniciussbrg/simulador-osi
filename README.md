@@ -27,7 +27,9 @@ Mantenha **topologia.json** na mesma pasta
 
 Não é necessário instalar Python ou acessar a internet durante o uso
 
-Escolha **E2 / C2 - Entrega indireta**, clique em **Preparar** e escolha uma das opções para cada necessidade:
+Na área superior direita da tela, em cenário escolha o cenário desejado para observação, como por exemplo **E2 / C2 - Entrega indireta** 
+
+Após isso, na parte central da tela clique em **Preparar** e escolha uma das opções para cada necessidade:
 
 - **Ir ao resultado**: Verificar o resultado final imediatamente
 
@@ -35,17 +37,15 @@ Escolha **E2 / C2 - Entrega indireta**, clique em **Preparar** e escolha uma das
 
 - **Próximo passo**: Exibe cada um dos passos executados porém são demonstrados pausadamente e a cada clique no botão
 
-No final: Confira 42 B úteis, 368 B transmitidos, quatro quadros e eficiência global de 11,41%. 
+No final da tela confira os resultados: 42 B úteis, 368 B transmitidos, quatro quadros e eficiência global de 11,41%. 
 
-Use **Encerrar** para finalizar pois apenas fechar a aba do navegador mantém o programa ativo.
+Na área superior esquerda da tela use o botão **Encerrar** para finalizar o programa pois apenas fechar a aba do navegador mantém o programa ativo.
 
 ## Projeto
 
 O programa demonstra as sete camadas OSI, encapsulamento, rotas de menor custo, endereços, segmentação, cifra didática, falhas e métricas. 
 
-Computadores processam L1–L7
-
-Roteadores processam L1–L3
+Computadores processam o range de camadas L1–L7 e Roteadores processam L1–L3
 
 | Arquivo ou pasta | Responsabilidade |
 |---|---|
