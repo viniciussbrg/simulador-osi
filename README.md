@@ -41,7 +41,7 @@ No final da tela confira os resultados: 42 B úteis, 368 B transmitidos, quatro 
 
 Na área superior esquerda da tela use o botão **Encerrar** para finalizar o programa pois apenas fechar a aba do navegador mantém o programa ativo.
 
-## Estrutura do repositório
+## 🌳 Estrutura do repositório
 
 * **SimuladorOSI/** — pasta principal do projeto
 
@@ -70,7 +70,7 @@ Na área superior esquerda da tela use o botão **Encerrar** para finalizar o pr
     * `tutorial_execucao.pdf`
     * `tutorial_uso.pdf`
 
-## Arquivos e responsabilidades
+## 📁 Arquivos e responsabilidades
 
 | Arquivo                | Responsabilidade                                                                                                                           |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -118,7 +118,9 @@ Na área superior esquerda da tela use o botão **Encerrar** para finalizar o pr
 ## Tutoriais e Documentação do Projeto
 
 [Tutorial de Execução](https://github.com/vmafdev/simulador-osi/blob/main/docs/Tutorial%20de%20Execução%20-%20SimuladorOSI.pdf)
+
 [Tutorial de Uso](https://github.com/vmafdev/simulador-osi/blob/main/docs/Tutorial%20de%20Uso%20-%20SimuladorOSI.pdf)
+
 [Documentação]()
 
 ## Primeiros passos
