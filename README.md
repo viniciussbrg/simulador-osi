@@ -1,6 +1,6 @@
 # **Simulador OSI**
 
-## Autoria, orientação e escopo
+## 👥 Autoria, orientação e escopo
 
 Este projeto foi desenvolvido como parte das atividades da disciplina de Comunicação de Dados, ministrada pelo Prof. Vinícius Borges no 7º semestre do curso de Engenharia da Computação da Faculdade Engenheiro Salvador Arena.
 
@@ -17,7 +17,7 @@ O Simulador OSI é um programa desenvolvido em Python para demonstrar a comunica
 
 O programa permite executar a simulação passo a passo ou de forma contínua, visualizar os endereços utilizados e acompanhar a segmentação e a remontagem das mensagens. Também apresenta cenários de falha de enlace, destino inalcançável e erro de transmissão. Os acontecimentos ficam registrados em um log, e os resultados mostram o volume de dados transmitidos e a eficiência da comunicação. A rede simulada é definida em um arquivo JSON externo, permitindo alterar a topologia sem modificar o código.
 
-## Execução do programa
+## ▶️ Execução do programa
 
 Baixe o zip do projeto no GitHub e extraia-o completamente. Abra a nova pasta gerada após a extração e execute o arquivo **SimuladorOSI.exe** com dois cliques
 
@@ -89,7 +89,7 @@ Na área superior esquerda da tela use o botão **Encerrar** para finalizar o pr
 | `interface/styles.css` | Define a aparência e a organização visual da interface.                                                                                    |
 | `interface/app.js`     | Envia configurações ao servidor, reproduz os eventos, desenha a rede e as pilhas e permite exportar o log.                                 |
 
-## Requisitos de ambiente
+## ⚙️ Requisitos de ambiente
 
 ### Execução pelo executável
 
@@ -99,7 +99,7 @@ Na área superior esquerda da tela use o botão **Encerrar** para finalizar o pr
 * Não é necessário instalar Python ou bibliotecas adicionais.
 * Não é necessária conexão com a internet durante o uso. A comunicação entre a interface e o servidor ocorre no próprio computador.
 
-## Funcionalidades
+## 🧩 Funcionalidades
 
 | Funcionalidade                                                                                                                                                | Arquivo(s) principal(is)                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
@@ -115,7 +115,7 @@ Na área superior esquerda da tela use o botão **Encerrar** para finalizar o pr
 | Apresentação das métricas de transmissão, eficiência e sobrecarga, com comparação de referência entre E1 e E2 para uma mensagem de 42 bytes na rede original. | `osi/simulador.py`, `osi/observacao.py` e `interface/app.js`        |
 
 
-## Tutoriais e Documentação do Projeto
+## 📚 Tutoriais e Documentação do Projeto
 
 [Tutorial de Execução](https://github.com/vmafdev/simulador-osi/blob/main/docs/Tutorial%20de%20Execução%20-%20SimuladorOSI.pdf)
 
@@ -123,7 +123,7 @@ Na área superior esquerda da tela use o botão **Encerrar** para finalizar o pr
 
 [Documentação]()
 
-## Primeiros passos
+## 🚀 Primeiros passos
 
 1. Abra o programa com dois cliques em SimuladorOSI.exe e siga o arquivo de tutorial de execução para validar o programa
 2. Reproduza o cenário E2 pelo tutorial de uso e aprenda a utilizar as demais funcionalidades presentes
