@@ -91,8 +91,6 @@ Na área superior esquerda da tela use o botão **Encerrar** para finalizar o pr
 
 ## ⚙️ Requisitos de ambiente
 
-### Execução pelo executável
-
 * Windows 10 ou 11, de 64 bits.
 * Navegador atualizado com JavaScript habilitado.
 * Arquivo `topologia.json` na mesma pasta de `SimuladorOSI.exe`.
