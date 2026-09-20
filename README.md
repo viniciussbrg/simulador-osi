@@ -119,7 +119,7 @@ Na área superior esquerda da tela use o botão **Encerrar** para finalizar o pr
 
 [Tutorial de Uso](https://github.com/vmafdev/simulador-osi/blob/main/docs/Tutorial%20de%20Uso%20-%20SimuladorOSI.pdf)
 
-[Documentação]()
+[Documentação](https://github.com/vmafdev/simulador-osi/blob/main/docs/Documentação%20-%20SimuladorOSI.pdf)
 
 ## 🚀 Primeiros passos
 
