@@ -1,0 +1,91 @@
+# Simulador do Modelo OSI 1.0 - Grupo 8
+# Integrantes: Arthur Benevides 082230016, Fernando Montanher 082230010, Guilherme Costa 081240041, Juan Haddad 081240043, Murillo Ando 082240042
+# Cenario: E7/C7 - Mensagem longa
+# Descricao: Mensagem de 100 B dividida em tres segmentos, remontados em ordem.
+# Rede: Rede de referencia do Projeto 1
+# Caminho: H1 -> R1 -> R4 -> R3 -> H4
+# Octetos uteis da mensagem ....... 100 B
+# Octetos transmitidos nos enlaces  968 B
+# Quadros construidos ............. 12
+# Eficiencia (n) .................. 10.3%
+# Sobrecarga (1 - n) .............. 89.7%
+#
+001 | H1 | L7 | GERA         | processo navegador, destino servidorWeb                       100 B
+002 | H1 | L6 | CODIFICA     | octetos UTF-8, conteudo cifrado                               100 B
+003 | H1 | L5 | ABRE         | sessao S-0001 estabelecida                                    104 B
+004 | H1 | L4 | SEGMENTA     | porta 5210 → 443, segmento 1 de 3                             48 B
+005 | H1 | L3 | ENCAPSULA    | 10.0.1.10 → 10.0.3.10                                         68 B
+006 | H1 | L3 | ROTEIA       | proximo salto 10.0.1.1 pela interface eth0                    68 B
+007 | H1 | L2 | ENQUADRA     | AA:...:01:0A → BB:...:01:00, quadro Q1                        86 B
+008 | H1 | L1 | TRANSMITE    | 688 bits no enlace H1–R1                                      86 B
+009 | R1 | L1 | RECEBE       | 688 bits do enlace H1–R1                                      86 B
+010 | R1 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q1 descartado             68 B
+011 | R1 | L3 | ROTEIA       | 10.0.3.0/24 via R4, custo 2, interface e1                     68 B
+012 | R1 | L2 | ENQUADRA     | BB:...:01:01 → BB:...:04:00, quadro Q2                        86 B
+013 | R1 | L1 | TRANSMITE    | 688 bits no enlace R1–R4                                      86 B
+014 | R4 | L1 | RECEBE       | 688 bits do enlace R1–R4                                      86 B
+015 | R4 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q2 descartado             68 B
+016 | R4 | L3 | ROTEIA       | 10.0.3.0/24 via R3, custo 1, interface e1                     68 B
+017 | R4 | L2 | ENQUADRA     | BB:...:04:01 → BB:...:03:00, quadro Q3                        86 B
+018 | R4 | L1 | TRANSMITE    | 688 bits no enlace R4–R3                                      86 B
+019 | R3 | L1 | RECEBE       | 688 bits do enlace R4–R3                                      86 B
+020 | R3 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q3 descartado             68 B
+021 | R3 | L3 | ROTEIA       | 10.0.3.0/24 e rede local, entrega direta pela interface e2    68 B
+022 | R3 | L2 | ENQUADRA     | BB:...:03:02 → AA:...:03:0A, quadro Q4                        86 B
+023 | R3 | L1 | TRANSMITE    | 688 bits no enlace R3–H4                                      86 B
+024 | H4 | L1 | RECEBE       | 688 bits do enlace R3–H4                                      86 B
+025 | H4 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q4 descartado             68 B
+026 | H4 | L3 | DESENCAPSULA | pacote P1 entregue ao destino 10.0.3.10                       48 B
+027 | H4 | L4 | ARMAZENA     | porta 443 (servidorWeb), segmento 1 de 3 retido; faltam 2     40 B
+028 | H1 | L4 | SEGMENTA     | porta 5210 → 443, segmento 2 de 3                             48 B
+029 | H1 | L3 | ENCAPSULA    | 10.0.1.10 → 10.0.3.10                                         68 B
+030 | H1 | L3 | ROTEIA       | proximo salto 10.0.1.1 pela interface eth0                    68 B
+031 | H1 | L2 | ENQUADRA     | AA:...:01:0A → BB:...:01:00, quadro Q5                        86 B
+032 | H1 | L1 | TRANSMITE    | 688 bits no enlace H1–R1                                      86 B
+033 | R1 | L1 | RECEBE       | 688 bits do enlace H1–R1                                      86 B
+034 | R1 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q5 descartado             68 B
+035 | R1 | L3 | ROTEIA       | 10.0.3.0/24 via R4, custo 2, interface e1                     68 B
+036 | R1 | L2 | ENQUADRA     | BB:...:01:01 → BB:...:04:00, quadro Q6                        86 B
+037 | R1 | L1 | TRANSMITE    | 688 bits no enlace R1–R4                                      86 B
+038 | R4 | L1 | RECEBE       | 688 bits do enlace R1–R4                                      86 B
+039 | R4 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q6 descartado             68 B
+040 | R4 | L3 | ROTEIA       | 10.0.3.0/24 via R3, custo 1, interface e1                     68 B
+041 | R4 | L2 | ENQUADRA     | BB:...:04:01 → BB:...:03:00, quadro Q7                        86 B
+042 | R4 | L1 | TRANSMITE    | 688 bits no enlace R4–R3                                      86 B
+043 | R3 | L1 | RECEBE       | 688 bits do enlace R4–R3                                      86 B
+044 | R3 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q7 descartado             68 B
+045 | R3 | L3 | ROTEIA       | 10.0.3.0/24 e rede local, entrega direta pela interface e2    68 B
+046 | R3 | L2 | ENQUADRA     | BB:...:03:02 → AA:...:03:0A, quadro Q8                        86 B
+047 | R3 | L1 | TRANSMITE    | 688 bits no enlace R3–H4                                      86 B
+048 | H4 | L1 | RECEBE       | 688 bits do enlace R3–H4                                      86 B
+049 | H4 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q8 descartado             68 B
+050 | H4 | L3 | DESENCAPSULA | pacote P2 entregue ao destino 10.0.3.10                       48 B
+051 | H4 | L4 | ARMAZENA     | porta 443 (servidorWeb), segmento 2 de 3 retido; faltam 1     40 B
+052 | H1 | L4 | SEGMENTA     | porta 5210 → 443, segmento 3 de 3                             32 B
+053 | H1 | L3 | ENCAPSULA    | 10.0.1.10 → 10.0.3.10                                         52 B
+054 | H1 | L3 | ROTEIA       | proximo salto 10.0.1.1 pela interface eth0                    52 B
+055 | H1 | L2 | ENQUADRA     | AA:...:01:0A → BB:...:01:00, quadro Q9                        70 B
+056 | H1 | L1 | TRANSMITE    | 560 bits no enlace H1–R1                                      70 B
+057 | R1 | L1 | RECEBE       | 560 bits do enlace H1–R1                                      70 B
+058 | R1 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q9 descartado             52 B
+059 | R1 | L3 | ROTEIA       | 10.0.3.0/24 via R4, custo 2, interface e1                     52 B
+060 | R1 | L2 | ENQUADRA     | BB:...:01:01 → BB:...:04:00, quadro Q10                       70 B
+061 | R1 | L1 | TRANSMITE    | 560 bits no enlace R1–R4                                      70 B
+062 | R4 | L1 | RECEBE       | 560 bits do enlace R1–R4                                      70 B
+063 | R4 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q10 descartado            52 B
+064 | R4 | L3 | ROTEIA       | 10.0.3.0/24 via R3, custo 1, interface e1                     52 B
+065 | R4 | L2 | ENQUADRA     | BB:...:04:01 → BB:...:03:00, quadro Q11                       70 B
+066 | R4 | L1 | TRANSMITE    | 560 bits no enlace R4–R3                                      70 B
+067 | R3 | L1 | RECEBE       | 560 bits do enlace R4–R3                                      70 B
+068 | R3 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q11 descartado            52 B
+069 | R3 | L3 | ROTEIA       | 10.0.3.0/24 e rede local, entrega direta pela interface e2    52 B
+070 | R3 | L2 | ENQUADRA     | BB:...:03:02 → AA:...:03:0A, quadro Q12                       70 B
+071 | R3 | L1 | TRANSMITE    | 560 bits no enlace R3–H4                                      70 B
+072 | H4 | L1 | RECEBE       | 560 bits do enlace R3–H4                                      70 B
+073 | H4 | L2 | DESENQUADRA  | verificacao de erro correta, quadro Q12 descartado            52 B
+074 | H4 | L3 | DESENCAPSULA | pacote P3 entregue ao destino 10.0.3.10                       32 B
+075 | H4 | L4 | ARMAZENA     | porta 443 (servidorWeb), segmento 3 de 3 retido; faltam 0     24 B
+076 | H4 | L4 | REMONTA      | segmentos 1 a 3 remontados em ordem na porta 443              104 B
+077 | H4 | L5 | ENCERRA      | sessao S-0001 encerrada                                       100 B
+078 | H4 | L6 | DECODIFICA   | conteudo decifrado e texto restaurado                         100 B
+079 | H4 | L7 | ENTREGA      | mensagem entregue ao processo servidorWeb                     100 B

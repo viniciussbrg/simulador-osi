@@ -1,0 +1,19 @@
+# O simulador nao depende de nenhuma biblioteca externa.
+#
+# Tudo o que ele usa pertence a biblioteca padrao do Python 3.10 ou superior:
+#   tkinter  interface grafica          json   leitura da topologia
+#   zlib     verificacao de erro (CRC)  struct montagem dos cabecalhos
+#   heapq    algoritmo de menor caminho dataclasses, typing, html, datetime
+#
+# Este arquivo existe apenas para registrar essa ausencia de dependencias.
+# Para executar a partir do codigo-fonte basta:
+#
+#     python main.py
+#
+# As bibliotecas abaixo NAO sao necessarias para usar o simulador. Elas foram
+# usadas uma unica vez, na maquina de desenvolvimento, para gerar o executavel
+# e os PDFs da pasta docs/:
+#
+#     pyinstaller   empacota o SimuladorOSI.exe
+#     reportlab     gera os PDFs da documentacao
+#     pillow        captura as telas dos tutoriais

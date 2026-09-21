@@ -1,0 +1,199 @@
+{
+  "nome": "Rede de referencia do Projeto 1",
+  "descricao": "Topologia obrigatoria do enunciado: tres redes locais, quatro roteadores e cinco computadores. Substituir este arquivo, ao lado do executavel, troca a rede simulada sem recompilar nada.",
+  "versao_formato": 1,
+
+  "_comentario_segmentos": "Cada segmento e um dominio de enlace, isto e, uma rede fisica: dois membros do mesmo segmento trocam quadros diretamente. O campo 'custo' e a metrica usada pelo algoritmo de menor caminho da camada 3. Segmentos de rede local custam 0 e os enlaces ponto a ponto entre roteadores carregam os custos marcados na Figura 1 do enunciado.",
+
+  "segmentos": [
+    {
+      "id": "RedeA",
+      "rotulo": "Rede A",
+      "prefixo": "10.0.1.0/24",
+      "tipo": "lan",
+      "custo": 0,
+      "posicao": [0.16, 0.46],
+      "membros": [
+        { "dispositivo": "H1", "interface": "eth0" },
+        { "dispositivo": "H2", "interface": "eth0" },
+        { "dispositivo": "R1", "interface": "e0" }
+      ]
+    },
+    {
+      "id": "RedeB",
+      "rotulo": "Rede B",
+      "prefixo": "10.0.2.0/24",
+      "tipo": "lan",
+      "custo": 0,
+      "posicao": [0.50, 0.84],
+      "membros": [
+        { "dispositivo": "H3", "interface": "eth0" },
+        { "dispositivo": "R2", "interface": "e2" }
+      ]
+    },
+    {
+      "id": "RedeC",
+      "rotulo": "Rede C",
+      "prefixo": "10.0.3.0/24",
+      "tipo": "lan",
+      "custo": 0,
+      "posicao": [0.84, 0.46],
+      "membros": [
+        { "dispositivo": "H4", "interface": "eth0" },
+        { "dispositivo": "H5", "interface": "eth0" },
+        { "dispositivo": "R3", "interface": "e2" }
+      ]
+    },
+    {
+      "id": "R1-R4",
+      "rotulo": "R1-R4",
+      "prefixo": "10.0.14.0/24",
+      "tipo": "ponto_a_ponto",
+      "custo": 1,
+      "membros": [
+        { "dispositivo": "R1", "interface": "e1" },
+        { "dispositivo": "R4", "interface": "e0" }
+      ]
+    },
+    {
+      "id": "R1-R2",
+      "rotulo": "R1-R2",
+      "prefixo": "10.0.12.0/24",
+      "tipo": "ponto_a_ponto",
+      "custo": 2,
+      "membros": [
+        { "dispositivo": "R1", "interface": "e2" },
+        { "dispositivo": "R2", "interface": "e0" }
+      ]
+    },
+    {
+      "id": "R2-R3",
+      "rotulo": "R2-R3",
+      "prefixo": "10.0.23.0/24",
+      "tipo": "ponto_a_ponto",
+      "custo": 1,
+      "membros": [
+        { "dispositivo": "R2", "interface": "e1" },
+        { "dispositivo": "R3", "interface": "e1" }
+      ]
+    },
+    {
+      "id": "R4-R3",
+      "rotulo": "R4-R3",
+      "prefixo": "10.0.34.0/24",
+      "tipo": "ponto_a_ponto",
+      "custo": 1,
+      "membros": [
+        { "dispositivo": "R4", "interface": "e1" },
+        { "dispositivo": "R3", "interface": "e0" }
+      ]
+    }
+  ],
+
+  "_comentario_dispositivos": "Computadores implementam as sete camadas; roteadores implementam apenas as tres primeiras. O campo 'posicao' e normalizado entre 0 e 1 e serve apenas para desenhar o mapa da rede.",
+
+  "dispositivos": [
+    {
+      "nome": "H1",
+      "tipo": "computador",
+      "rotulo": "H1",
+      "posicao": [0.07, 0.30],
+      "gateway": "10.0.1.1",
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.1.10", "fisico": "AA:00:00:00:01:0A" }
+      ]
+    },
+    {
+      "nome": "H2",
+      "tipo": "computador",
+      "rotulo": "H2",
+      "posicao": [0.07, 0.62],
+      "gateway": "10.0.1.1",
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.1.11", "fisico": "AA:00:00:00:01:0B" }
+      ]
+    },
+    {
+      "nome": "H3",
+      "tipo": "computador",
+      "rotulo": "H3",
+      "posicao": [0.50, 0.93],
+      "gateway": "10.0.2.1",
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.2.10", "fisico": "AA:00:00:00:02:0A" }
+      ]
+    },
+    {
+      "nome": "H4",
+      "tipo": "computador",
+      "rotulo": "H4",
+      "posicao": [0.93, 0.30],
+      "gateway": "10.0.3.1",
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.3.10", "fisico": "AA:00:00:00:03:0A" }
+      ]
+    },
+    {
+      "nome": "H5",
+      "tipo": "computador",
+      "rotulo": "H5",
+      "posicao": [0.93, 0.62],
+      "gateway": "10.0.3.1",
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.3.11", "fisico": "AA:00:00:00:03:0B" }
+      ]
+    },
+    {
+      "nome": "R1",
+      "tipo": "roteador",
+      "rotulo": "R1",
+      "posicao": [0.27, 0.46],
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.1.1", "fisico": "BB:00:00:00:01:00", "descricao": "Rede A" },
+        { "nome": "e1", "logico": "10.0.14.1", "fisico": "BB:00:00:00:01:01", "descricao": "para R4" },
+        { "nome": "e2", "logico": "10.0.12.1", "fisico": "BB:00:00:00:01:02", "descricao": "para R2" }
+      ]
+    },
+    {
+      "nome": "R2",
+      "tipo": "roteador",
+      "rotulo": "R2",
+      "posicao": [0.50, 0.73],
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.12.2", "fisico": "BB:00:00:00:02:00", "descricao": "para R1" },
+        { "nome": "e1", "logico": "10.0.23.2", "fisico": "BB:00:00:00:02:01", "descricao": "para R3" },
+        { "nome": "e2", "logico": "10.0.2.1", "fisico": "BB:00:00:00:02:02", "descricao": "Rede B" }
+      ]
+    },
+    {
+      "nome": "R3",
+      "tipo": "roteador",
+      "rotulo": "R3",
+      "posicao": [0.73, 0.46],
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.34.3", "fisico": "BB:00:00:00:03:00", "descricao": "para R4" },
+        { "nome": "e1", "logico": "10.0.23.3", "fisico": "BB:00:00:00:03:01", "descricao": "para R2" },
+        { "nome": "e2", "logico": "10.0.3.1", "fisico": "BB:00:00:00:03:02", "descricao": "Rede C" }
+      ]
+    },
+    {
+      "nome": "R4",
+      "tipo": "roteador",
+      "rotulo": "R4",
+      "posicao": [0.50, 0.13],
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.14.4", "fisico": "BB:00:00:00:04:00", "descricao": "para R1" },
+        { "nome": "e1", "logico": "10.0.34.4", "fisico": "BB:00:00:00:04:01", "descricao": "para R3" }
+      ]
+    }
+  ],
+
+  "_comentario_processos": "Processos conhecidos pelo nome, que e o endereco especifico da camada 7, e a porta em que cada um atende, que e o endereco da camada 4.",
+
+  "processos": [
+    { "nome": "navegador", "porta": 5210 },
+    { "nome": "servidorWeb", "porta": 443 },
+    { "nome": "clienteEmail", "porta": 5220 },
+    { "nome": "servidorEmail", "porta": 25 }
+  ]
+}

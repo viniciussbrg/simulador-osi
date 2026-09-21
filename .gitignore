@@ -8,17 +8,29 @@ target/
 *.o
 *.obj
 *.class
+*.spec
+*.egg-info/
 
 # Ambientes e caches de linguagem
 __pycache__/
 *.pyc
+*.py[cod]
 .venv/
 venv/
 env/
 node_modules/
+
+# Saidas geradas pelo proprio simulador durante o uso.
+# Os registros dos sete casos de validacao ficam em registros/ e SAO versionados.
+registro_eventos.txt
+relatorio_simulacao.html
+
+# Projetos de exemplo usados como referencia, fora da entrega
+_exemplos/
 
 # Editores e sistema
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
+desktop.ini
