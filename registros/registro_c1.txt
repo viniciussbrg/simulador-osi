@@ -1,0 +1,30 @@
+Simulador do modelo OSI — E1/C1 - Entrega direta
+Gerado em 18/09/2026 21:53:40
+
+PAS | EQ | CA | AÇÃO         | DESCRIÇÃO
+------------------------------------------------------------------------------------------------------
+001 | H1 | L7 | GERA         | processo navegador, destino servidorWeb                            42 B
+002 | H1 | L6 | CODIFICA     | octetos UTF-8, conteúdo cifrado                                    42 B
+003 | H1 | L5 | ABRE         | sessão S-0001 estabelecida                                         46 B
+004 | H1 | L4 | SEGMENTA     | porta 5210 → 443, segmento 1 de 1                                  54 B
+005 | H1 | L3 | ENCAPSULA    | 10.0.1.10 → 10.0.1.11                                              74 B
+006 | H1 | L3 | ROTEIA       | destino 10.0.1.11 na mesma rede 10.0.1.0/24, entrega direta pela interface eth0  74 B
+007 | H1 | L2 | ENQUADRA     | AA:...:01:0A → AA:...:01:0B, quadro Q1                             92 B
+008 | H1 | L1 | TRANSMITE    | 736 bits no enlace H1-H2                                           92 B
+009 | H2 | L1 | RECEBE       | 736 bits do enlace H1-H2                                           92 B
+010 | H2 | L2 | DESENQUADRA  | verificação de erro correta, quadro Q1 descartado                  74 B
+011 | H2 | L3 | DESENCAPSULA | pacote P1 destinado a este nó, 10.0.1.10 -> 10.0.1.11              54 B
+012 | H2 | L4 | DEMULTIPLEXA | porta 443 recebe de 10.0.1.10:5210, segmento 1 de 1                46 B
+013 | H2 | L5 | ENCERRA      | sessão S-0001 entregue e encerrada                                 42 B
+014 | H2 | L6 | DECODIFICA   | conteúdo decifrado, octetos UTF-8                                  42 B
+015 | H2 | L7 | ENTREGA      | processo servidorWeb recebe a mensagem: GET /index.html HTTP/1.1 Host: servid...  42 B
+------------------------------------------------------------------------------------------------------
+Custo do empilhamento
+Cenário ................ E1/C1 - Entrega direta
+Octetos úteis .......... 42
+Octetos transmitidos ... 92
+Quadros transmitidos ... 1
+Enlaces percorridos .... 1
+Eficiência ............. 45.7%
+Sobrecarga ............. 54.3%
+Mensagem entregue ...... sim

@@ -1,0 +1,45 @@
+Simulador do modelo OSI — E4/C4 - Falha de enlace
+Gerado em 18/09/2026 21:54:59
+
+PAS | EQ | CA | AÇÃO         | DESCRIÇÃO
+------------------------------------------------------------------------------------------------------
+001 | H1 | L7 | GERA         | processo navegador, destino servidorWeb                            42 B
+002 | H1 | L6 | CODIFICA     | octetos UTF-8, conteúdo cifrado                                    42 B
+003 | H1 | L5 | ABRE         | sessão S-0001 estabelecida                                         46 B
+004 | H1 | L4 | SEGMENTA     | porta 5210 → 443, segmento 1 de 1                                  54 B
+005 | H1 | L3 | ENCAPSULA    | 10.0.1.10 → 10.0.3.10                                              74 B
+006 | H1 | L3 | ROTEIA       | destino 10.0.3.10 fora da rede local, próximo salto 10.0.1.1 pela interface eth0  74 B
+007 | H1 | L2 | ENQUADRA     | AA:...:01:0A → BB:...:01:00, quadro Q1                             92 B
+008 | H1 | L1 | TRANSMITE    | 736 bits no enlace H1-R1                                           92 B
+009 | R1 | L1 | RECEBE       | 736 bits do enlace H1-R1                                           92 B
+010 | R1 | L2 | DESENQUADRA  | verificação de erro correta, quadro Q1 descartado                  74 B
+011 | R1 | L3 | ROTEIA       | 10.0.3.0/24 via R2, custo 3, interface e2                          74 B
+012 | R1 | L2 | ENQUADRA     | BB:...:01:02 → BB:...:02:00, quadro Q2                             92 B
+013 | R1 | L1 | TRANSMITE    | 736 bits no enlace R1-R2                                           92 B
+014 | R2 | L1 | RECEBE       | 736 bits do enlace R1-R2                                           92 B
+015 | R2 | L2 | DESENQUADRA  | verificação de erro correta, quadro Q2 descartado                  74 B
+016 | R2 | L3 | ROTEIA       | 10.0.3.0/24 via R3, custo 1, interface e1                          74 B
+017 | R2 | L2 | ENQUADRA     | BB:...:02:01 → BB:...:03:01, quadro Q3                             92 B
+018 | R2 | L1 | TRANSMITE    | 736 bits no enlace R2-R3                                           92 B
+019 | R3 | L1 | RECEBE       | 736 bits do enlace R2-R3                                           92 B
+020 | R3 | L2 | DESENQUADRA  | verificação de erro correta, quadro Q3 descartado                  74 B
+021 | R3 | L3 | ROTEIA       | 10.0.3.0/24 conectada diretamente, entrega direta a 10.0.3.10, interface e2  74 B
+022 | R3 | L2 | ENQUADRA     | BB:...:03:02 → AA:...:03:0A, quadro Q4                             92 B
+023 | R3 | L1 | TRANSMITE    | 736 bits no enlace R3-H4                                           92 B
+024 | H4 | L1 | RECEBE       | 736 bits do enlace R3-H4                                           92 B
+025 | H4 | L2 | DESENQUADRA  | verificação de erro correta, quadro Q4 descartado                  74 B
+026 | H4 | L3 | DESENCAPSULA | pacote P1 destinado a este nó, 10.0.1.10 -> 10.0.3.10              54 B
+027 | H4 | L4 | DEMULTIPLEXA | porta 443 recebe de 10.0.1.10:5210, segmento 1 de 1                46 B
+028 | H4 | L5 | ENCERRA      | sessão S-0001 entregue e encerrada                                 42 B
+029 | H4 | L6 | DECODIFICA   | conteúdo decifrado, octetos UTF-8                                  42 B
+030 | H4 | L7 | ENTREGA      | processo servidorWeb recebe a mensagem: GET /index.html HTTP/1.1 Host: servid...  42 B
+------------------------------------------------------------------------------------------------------
+Custo do empilhamento
+Cenário ................ E4/C4 - Falha de enlace
+Octetos úteis .......... 42
+Octetos transmitidos ... 368
+Quadros transmitidos ... 4
+Enlaces percorridos .... 4
+Eficiência ............. 11.4%
+Sobrecarga ............. 88.6%
+Mensagem entregue ...... sim

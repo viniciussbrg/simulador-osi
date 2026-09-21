@@ -1,0 +1,76 @@
+{
+  "nome": "Rede de referencia - Projeto 1 (Figura 1 do enunciado)",
+  "descricao": "Tres redes locais, quatro roteadores e cinco computadores. O custo de cada segmento e usado pelo algoritmo de menor custo. Redes locais tem custo 0 porque sao o destino, e nao um trecho de passagem. Substitua este arquivo ao lado do executavel para simular outra rede.",
+  "redes": [
+    { "nome": "Rede A", "prefixo": "10.0.1.0/24", "custo": 0, "tipo": "local", "posicao": [0.13, 0.36] },
+    { "nome": "Rede B", "prefixo": "10.0.2.0/24", "custo": 0, "tipo": "local", "posicao": [0.50, 0.86] },
+    { "nome": "Rede C", "prefixo": "10.0.3.0/24", "custo": 0, "tipo": "local", "posicao": [0.87, 0.36] },
+    { "nome": "Enlace R1-R4", "prefixo": "10.0.14.0/24", "custo": 1, "tipo": "ponto-a-ponto" },
+    { "nome": "Enlace R3-R4", "prefixo": "10.0.34.0/24", "custo": 1, "tipo": "ponto-a-ponto" },
+    { "nome": "Enlace R1-R2", "prefixo": "10.0.12.0/24", "custo": 2, "tipo": "ponto-a-ponto" },
+    { "nome": "Enlace R2-R3", "prefixo": "10.0.23.0/24", "custo": 1, "tipo": "ponto-a-ponto" }
+  ],
+  "dispositivos": [
+    {
+      "nome": "H1", "tipo": "computador", "gateway": "10.0.1.1", "posicao": [0.05, 0.20],
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.1.10", "mascara": 24, "fisico": "AA:00:00:00:01:0A", "rede": "Rede A" }
+      ]
+    },
+    {
+      "nome": "H2", "tipo": "computador", "gateway": "10.0.1.1", "posicao": [0.05, 0.55],
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.1.11", "mascara": 24, "fisico": "AA:00:00:00:01:0B", "rede": "Rede A" }
+      ]
+    },
+    {
+      "nome": "H3", "tipo": "computador", "gateway": "10.0.2.1", "posicao": [0.50, 0.96],
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.2.10", "mascara": 24, "fisico": "AA:00:00:00:02:0A", "rede": "Rede B" }
+      ]
+    },
+    {
+      "nome": "H4", "tipo": "computador", "gateway": "10.0.3.1", "posicao": [0.95, 0.20],
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.3.10", "mascara": 24, "fisico": "AA:00:00:00:03:0A", "rede": "Rede C" }
+      ]
+    },
+    {
+      "nome": "H5", "tipo": "computador", "gateway": "10.0.3.1", "posicao": [0.95, 0.55],
+      "interfaces": [
+        { "nome": "eth0", "logico": "10.0.3.11", "mascara": 24, "fisico": "AA:00:00:00:03:0B", "rede": "Rede C" }
+      ]
+    },
+    {
+      "nome": "R1", "tipo": "roteador", "posicao": [0.28, 0.36],
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.1.1",  "mascara": 24, "fisico": "BB:00:00:00:01:00", "rede": "Rede A" },
+        { "nome": "e1", "logico": "10.0.14.1", "mascara": 24, "fisico": "BB:00:00:00:01:01", "rede": "Enlace R1-R4" },
+        { "nome": "e2", "logico": "10.0.12.1", "mascara": 24, "fisico": "BB:00:00:00:01:02", "rede": "Enlace R1-R2" }
+      ]
+    },
+    {
+      "nome": "R2", "tipo": "roteador", "posicao": [0.50, 0.66],
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.12.2", "mascara": 24, "fisico": "BB:00:00:00:02:00", "rede": "Enlace R1-R2" },
+        { "nome": "e1", "logico": "10.0.23.2", "mascara": 24, "fisico": "BB:00:00:00:02:01", "rede": "Enlace R2-R3" },
+        { "nome": "e2", "logico": "10.0.2.1",  "mascara": 24, "fisico": "BB:00:00:00:02:02", "rede": "Rede B" }
+      ]
+    },
+    {
+      "nome": "R3", "tipo": "roteador", "posicao": [0.72, 0.36],
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.34.3", "mascara": 24, "fisico": "BB:00:00:00:03:00", "rede": "Enlace R3-R4" },
+        { "nome": "e1", "logico": "10.0.23.3", "mascara": 24, "fisico": "BB:00:00:00:03:01", "rede": "Enlace R2-R3" },
+        { "nome": "e2", "logico": "10.0.3.1",  "mascara": 24, "fisico": "BB:00:00:00:03:02", "rede": "Rede C" }
+      ]
+    },
+    {
+      "nome": "R4", "tipo": "roteador", "posicao": [0.50, 0.10],
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.14.4", "mascara": 24, "fisico": "BB:00:00:00:04:00", "rede": "Enlace R1-R4" },
+        { "nome": "e1", "logico": "10.0.34.4", "mascara": 24, "fisico": "BB:00:00:00:04:01", "rede": "Enlace R3-R4" }
+      ]
+    }
+  ]
+}
