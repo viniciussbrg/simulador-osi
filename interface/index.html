@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulador OSI • Comunicação de Dados</title><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script></head>
+<body>
+<header><div><strong>Simulador<span>OSI</span></strong><small>COMUNICAÇÃO DE DADOS • Guilherme Alves • Lucas Junqueira • Murilo Umbelino • Victor Mendes</small></div>
+	<div class="header-actions">
+		<span id="topologyName"></span><button id="loadTopology">Abrir topologia</button>
+		<button id="reloadTopology">Recarregar arquivo</button>
+		<button id="shutdown" class="quiet">Encerrar</button><input id="fileTopology" type="file" accept=".json" hidden>
+	</div>
+</header>
+<main>
+<div id="alert" role="alert" hidden></div>
+<section class="setup card">
+<div class="scenario"><label for="scenario">Cenário</label><select id="scenario"></select><button id="restore">Restaurar cenário</button><span id="profile"></span></div>
+<div class="fields">
+<label>Origem<select id="source"></select></label><label>Destino (host ou IPv4)<input id="destination" list="hosts" value="H4"><datalist id="hosts"></datalist></label>
+<label class="message">Mensagem<input id="message" value=""></label><span id="byteCount" class="muted"></span>
+</div>
+<details id="advanced"><summary>Processos, portas, segmentação e falhas</summary><div class="advanced-grid">
+<label>Processo de origem<input id="sourceProcess" maxlength="60"></label><label>Processo de destino<input id="targetProcess" maxlength="60"></label><label>Porta de origem<input id="sourcePort" type="number" min="1" max="65535"></label><label>Porta de destino<input id="targetPort" type="number" min="1" max="65535"></label><label>Carga máxima L4 (B)<input id="limit" type="number" min="4" max="1400"></label>
+<label>Derrubar enlace<select id="linkDown"></select></label><label>Alterar 1 bit no enlace<select id="bitError"></select></label><label id="secondSourceLabel">Segunda origem (E3)<select id="source2"></select></label><label id="secondPortLabel">Segunda porta (E3)<input id="sourcePort2" type="number" min="1" max="65535"></label><label class="check"><input id="reverse" type="checkbox">Enviar segmentos em ordem inversa</label></div></details>
+</section>
+<nav class="playback"><div><button id="prepare" class="primary">Preparar</button><button id="step">Próximo passo</button><button id="play">Executar</button><button id="pause">Pausar</button><button id="finish">Ir ao resultado</button></div><div class="play-options"><label>Velocidade <select id="speed"><option value="1200">0,5×</option><option value="600" selected>1×</option><option value="300">2×</option><option value="100">4×</option></select></label><label>Pilha <select id="stackMode"><option value="OSI">OSI · 7 camadas</option><option value="TCP/IP">TCP/IP · 5 camadas</option></select></label><button id="saveLog">Salvar log</button></div></nav>
+<div class="progress"><span id="status">Carregando topologia…</span><progress id="progress" value="0" max="1"></progress></div>
+<section class="board">
+<div class="card map-card"><div class="card-heading"><h2>01 <span>Mapa da rede</span></h2><div class="legend"><span class="blue-dot"></span>Percorrido <span class="gold-dot"></span>Salto atual <span class="red-dot"></span>Inativo</div></div><svg id="network" role="img" aria-label="Topologia da rede e percurso efetivo"></svg></div>
+<div class="card inspect"><div class="card-heading"><h2>02 <span>Passo e unidade de dados</span></h2><span id="identity" class="badge">—</span></div><div id="current">Prepare a simulação e avance um passo.</div><div id="pduTitle"></div><div id="pdu"></div>
+<div class="addresses"><h3>Quatro níveis de endereçamento</h3><span class="muted">Origem → destino · acompanha o fluxo do passo</span>
+<label>APLICAÇÃO · ENDEREÇOS ESPECÍFICOS / PROCESSOS</label><div id="applicationAddress">—</div>
+<label>TRANSPORTE · PORTAS DE PONTA A PONTA</label><div id="transportAddress">—</div>
+<label>REDE · ENDEREÇOS LÓGICOS FIXOS</label><div id="logical">—</div>
+<label>ENLACE · ENDEREÇOS FÍSICOS DO SALTO / ÚLTIMO SALTO</label><div id="physical">—</div>
+</div>
+</div>
+</section>
+<section class="card stacks-card"><div class="card-heading"><h2>03 <span>Pilhas dos dispositivos</span></h2><span class="muted">Amarelo: camada ativa · roteadores processam somente L1–L3</span></div><p id="stackExplanation">OSI: sete camadas nos computadores, três nos roteadores.</p><div id="stacks"></div></section>
+<section class="card bottom"><div class="tabs" role="tablist"><button class="selected" data-tab="events">Registro de eventos</button><button data-tab="results">Resultados</button><button data-tab="routes">Tabelas de encaminhamento</button><button data-tab="interfaces">Interfaces e endereços</button></div>
+<div id="events" class="tab"><pre id="log" tabindex="0"></pre></div><div id="results" class="tab" hidden>
+<div id="metrics"></div>
+<details class="frame-details"><summary>Dados e controle por quadro transmitido</summary>
+<div id="frameMetrics"></div></details><div id="routesResult"></div><div id="comparison">
+</div><div id="deliveries"></div>
+</div><div id="routes" class="tab" hidden></div><div id="interfaces" class="tab" hidden></div></section>
+</main></body></html>

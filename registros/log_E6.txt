@@ -1,0 +1,31 @@
+001 | H1 | L7 | GERA | processo navegador, destino servidorWeb [10.0.1.10:5210 -> 10.0.3.10:443] 42 B
+002 | H1 | L6 | CODIFICA | codificação UTF-8; cifra XOR didática, chave 0x5A [10.0.1.10:5210 -> 10.0.3.10:443] 42 B
+003 | H1 | L5 | ABRE | sessão S-0001 estabelecida [10.0.1.10:5210 -> 10.0.3.10:443] 46 B
+004 | H1 | L4 | SEGMENTA | porta 5210 -> 443, segmento 1/1; carga 46 B, limite 64 B [10.0.1.10:5210 -> 10.0.3.10:443] 54 B
+005 | H1 | L3 | ENCAPSULA | 10.0.1.10 -> 10.0.3.10, pacote P1 [10.0.1.10:5210 -> 10.0.3.10:443] 74 B
+006 | H1 | L3 | ROTEIA | 10.0.3.0/24 via R1 (10.0.1.1), custo 0, interface eth0 [10.0.1.10:5210 -> 10.0.3.10:443] 74 B
+007 | H1 | L2 | ENQUADRA | AA:00:00:00:01:0A -> BB:00:00:00:01:00; H2=14 B e F2/CRC32=4 B; novo Q1, contém P1 [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+008 | H1 | L1 | TRANSMITE | 736 bits no enlace H1-R1; Q1 [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+009 | R1 | L1 | RECEBE | 736 bits recebidos; Q1 [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+010 | R1 | L2 | DESENQUADRA | verificação de erro correta; quadro descartado, H2 e F2 removidos; Q1 [10.0.1.10:5210 -> 10.0.3.10:443] 74 B
+011 | R1 | L3 | ROTEIA | 10.0.3.0/24 via R4 (10.0.14.4), custo 2, interface e1 [10.0.1.10:5210 -> 10.0.3.10:443] 74 B
+012 | R1 | L2 | ENQUADRA | BB:00:00:00:01:01 -> BB:00:00:00:04:00; H2=14 B e F2/CRC32=4 B; novo Q2, contém P1 [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+013 | R1 | L1 | TRANSMITE | 736 bits no enlace R1-R4; Q2 [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+014 | R4 | L1 | RECEBE | 736 bits recebidos; Q2 [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+015 | R4 | L2 | DESENQUADRA | verificação de erro correta; quadro descartado, H2 e F2 removidos; Q2 [10.0.1.10:5210 -> 10.0.3.10:443] 74 B
+016 | R4 | L3 | ROTEIA | 10.0.3.0/24 via R3 (10.0.34.3), custo 1, interface e1 [10.0.1.10:5210 -> 10.0.3.10:443] 74 B
+017 | R4 | L2 | ENQUADRA | BB:00:00:00:04:01 -> BB:00:00:00:03:00; H2=14 B e F2/CRC32=4 B; novo Q3, contém P1 [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+018 | R4 | L1 | TRANSMITE | 736 bits no enlace R4-R3; Q3; 1 bit alterado [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+019 | R3 | L1 | RECEBE | 736 bits recebidos; Q3 [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+020 | R3 | L2 | DESCARTA | CRC inválido; quadro descartado; Q3 [10.0.1.10:5210 -> 10.0.3.10:443] 92 B
+021 | H1 | L5 | ENCERRA | sessão S-0001 encerrada (abortado, sem retransmissão); evento local do experimento, sem bytes adicionais no enlace [10.0.1.10:5210 -> 10.0.3.10:443] 0 B
+
+RESUMO E6
+Dados úteis: 42 B
+Transmitidos: 276 B
+Quadros: 3
+Eficiência global: 15,22%
+Eficiência dos quadros: 45,65%
+Controle nos quadros: 150 B
+Dados entregues: 0 B
+

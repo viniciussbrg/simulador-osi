@@ -1,0 +1,341 @@
+{
+  "nome": "Topologia obrigatória",
+  "redes_lan": [
+    {
+      "nome": "Rede A",
+      "prefixo": "10.0.1.0/24",
+      "roteador": "R1"
+    },
+    {
+      "nome": "Rede B",
+      "prefixo": "10.0.2.0/24",
+      "roteador": "R2"
+    },
+    {
+      "nome": "Rede C",
+      "prefixo": "10.0.3.0/24",
+      "roteador": "R3"
+    }
+  ],
+  "dispositivos": [
+    {
+      "nome": "H1",
+      "tipo": "host",
+      "posicao": [
+        80,
+        90
+      ],
+      "interfaces": {
+        "eth0": {
+          "ip": "10.0.1.10",
+          "mac": "AA:00:00:00:01:0A",
+          "rede": "Rede A"
+        }
+      }
+    },
+    {
+      "nome": "H2",
+      "tipo": "host",
+      "posicao": [
+        80,
+        210
+      ],
+      "interfaces": {
+        "eth0": {
+          "ip": "10.0.1.11",
+          "mac": "AA:00:00:00:01:0B",
+          "rede": "Rede A"
+        }
+      }
+    },
+    {
+      "nome": "H3",
+      "tipo": "host",
+      "posicao": [
+        500,
+        335
+      ],
+      "interfaces": {
+        "eth0": {
+          "ip": "10.0.2.10",
+          "mac": "AA:00:00:00:02:0A",
+          "rede": "Rede B"
+        }
+      }
+    },
+    {
+      "nome": "H4",
+      "tipo": "host",
+      "posicao": [
+        940,
+        90
+      ],
+      "interfaces": {
+        "eth0": {
+          "ip": "10.0.3.10",
+          "mac": "AA:00:00:00:03:0A",
+          "rede": "Rede C"
+        }
+      }
+    },
+    {
+      "nome": "H5",
+      "tipo": "host",
+      "posicao": [
+        940,
+        210
+      ],
+      "interfaces": {
+        "eth0": {
+          "ip": "10.0.3.11",
+          "mac": "AA:00:00:00:03:0B",
+          "rede": "Rede C"
+        }
+      }
+    },
+    {
+      "nome": "R1",
+      "tipo": "router",
+      "posicao": [
+        285,
+        150
+      ],
+      "interfaces": {
+        "e0": {
+          "ip": "10.0.1.1",
+          "mac": "BB:00:00:00:01:00",
+          "rede": "Rede A"
+        },
+        "e1": {
+          "ip": "10.0.14.1",
+          "mac": "BB:00:00:00:01:01"
+        },
+        "e2": {
+          "ip": "10.0.12.1",
+          "mac": "BB:00:00:00:01:02"
+        }
+      }
+    },
+    {
+      "nome": "R2",
+      "tipo": "router",
+      "posicao": [
+        505,
+        250
+      ],
+      "interfaces": {
+        "e0": {
+          "ip": "10.0.12.2",
+          "mac": "BB:00:00:00:02:00"
+        },
+        "e1": {
+          "ip": "10.0.23.2",
+          "mac": "BB:00:00:00:02:01"
+        },
+        "e2": {
+          "ip": "10.0.2.1",
+          "mac": "BB:00:00:00:02:02",
+          "rede": "Rede B"
+        }
+      }
+    },
+    {
+      "nome": "R3",
+      "tipo": "router",
+      "posicao": [
+        730,
+        150
+      ],
+      "interfaces": {
+        "e0": {
+          "ip": "10.0.34.3",
+          "mac": "BB:00:00:00:03:00"
+        },
+        "e1": {
+          "ip": "10.0.23.3",
+          "mac": "BB:00:00:00:03:01"
+        },
+        "e2": {
+          "ip": "10.0.3.1",
+          "mac": "BB:00:00:00:03:02",
+          "rede": "Rede C"
+        }
+      }
+    },
+    {
+      "nome": "R4",
+      "tipo": "router",
+      "posicao": [
+        505,
+        65
+      ],
+      "interfaces": {
+        "e0": {
+          "ip": "10.0.14.4",
+          "mac": "BB:00:00:00:04:00"
+        },
+        "e1": {
+          "ip": "10.0.34.4",
+          "mac": "BB:00:00:00:04:01"
+        }
+      }
+    }
+  ],
+  "segmentos": [
+    {
+      "nome": "LAN_A",
+      "tipo": "lan",
+      "prefixo": "10.0.1.0/24",
+      "membros": [
+        {
+          "dispositivo": "H1",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "H2",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "R1",
+          "interface": "e0"
+        }
+      ]
+    },
+    {
+      "nome": "LAN_B",
+      "tipo": "lan",
+      "prefixo": "10.0.2.0/24",
+      "membros": [
+        {
+          "dispositivo": "H3",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "R2",
+          "interface": "e2"
+        }
+      ]
+    },
+    {
+      "nome": "LAN_C",
+      "tipo": "lan",
+      "prefixo": "10.0.3.0/24",
+      "membros": [
+        {
+          "dispositivo": "H4",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "H5",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "R3",
+          "interface": "e2"
+        }
+      ]
+    },
+    {
+      "nome": "R1_R4",
+      "tipo": "p2p",
+      "custo": 1,
+      "membros": [
+        {
+          "dispositivo": "R1",
+          "interface": "e1"
+        },
+        {
+          "dispositivo": "R4",
+          "interface": "e0"
+        }
+      ]
+    },
+    {
+      "nome": "R4_R3",
+      "tipo": "p2p",
+      "custo": 1,
+      "membros": [
+        {
+          "dispositivo": "R4",
+          "interface": "e1"
+        },
+        {
+          "dispositivo": "R3",
+          "interface": "e0"
+        }
+      ]
+    },
+    {
+      "nome": "R1_R2",
+      "tipo": "p2p",
+      "custo": 2,
+      "membros": [
+        {
+          "dispositivo": "R1",
+          "interface": "e2"
+        },
+        {
+          "dispositivo": "R2",
+          "interface": "e0"
+        }
+      ]
+    },
+    {
+      "nome": "R2_R3",
+      "tipo": "p2p",
+      "custo": 1,
+      "membros": [
+        {
+          "dispositivo": "R2",
+          "interface": "e1"
+        },
+        {
+          "dispositivo": "R3",
+          "interface": "e1"
+        }
+      ]
+    }
+  ],
+  "cenarios": {
+    "E1": {
+      "origem": "H1",
+      "destino": "H2",
+      "porta_destino": 8080,
+      "processo_destino": "receptorLocal"
+    },
+    "E2": {
+      "origem": "H1",
+      "destino": "H4"
+    },
+    "E3": {
+      "origem": "H1",
+      "destino": "H4",
+      "origem2": "H2",
+      "porta_origem2": 5310
+    },
+    "E4": {
+      "origem": "H1",
+      "destino": "H4",
+      "links_inativos": [
+        "R1_R4"
+      ]
+    },
+    "E5": {
+      "origem": "H1",
+      "destino": "10.0.9.10"
+    },
+    "E6": {
+      "origem": "H1",
+      "destino": "H4",
+      "enlace_erro": "R4_R3"
+    },
+    "E7": {
+      "origem": "H1",
+      "destino": "H4",
+      "mensagem": "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789",
+      "limite": 40,
+      "porta_origem": 5400,
+      "processo_origem": "clienteLongo"
+    }
+  }
+}
