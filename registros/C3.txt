@@ -1,0 +1,66 @@
+# Simulador do Modelo OSI — Comunicação de Dados
+# Caso: C3 — Demultiplexação
+# Topologia: Topologia de referência — Projeto 1
+# Data: 2026-09-19 23:22:48
+#
+001 | H1 | L7 | GERA | processo navegador, destino servidorWeb             42 B
+002 | H1 | L6 | CODIFICA | octetos UTF-8, conteúdo cifrado                 42 B
+003 | H1 | L5 | ABRE | sessão S-0001 estabelecida                          46 B
+004 | H1 | L4 | SEGMENTA | porta 5210 → 443, segmento 1 de 1               54 B
+005 | H1 | L3 | ENCAPSULA | 10.0.1.10 → 10.0.3.10                          74 B
+006 | H1 | L3 | ROTEIA | próximo salto 10.0.1.1 pela interface eth0        74 B
+007 | H2 | L7 | GERA | processo navegador, destino servidorWeb             42 B
+008 | H2 | L6 | CODIFICA | octetos UTF-8, conteúdo cifrado                 42 B
+009 | H2 | L5 | ABRE | sessão S-0002 estabelecida                          46 B
+010 | H2 | L4 | SEGMENTA | porta 5311 → 443, segmento 1 de 1               54 B
+011 | H2 | L3 | ENCAPSULA | 10.0.1.11 → 10.0.3.10                          74 B
+012 | H2 | L3 | ROTEIA | próximo salto 10.0.1.1 pela interface eth0        74 B
+013 | H1 | L2 | ENQUADRA | AA:…:01:0A → BB:…:01:00, quadro Q1              92 B
+014 | H1 | L1 | TRANSMITE | 736 bits no enlace H1–R1                       92 B
+015 | R1 | L1 | RECEBE | 736 bits do enlace H1–R1                          92 B
+016 | R1 | L2 | DESENQUADRA | verificação de erro correta, quadro Q1 descartado  74 B
+017 | R1 | L3 | ROTEIA | 10.0.3.0/24 via R4, custo 2, interface e1         74 B
+018 | H2 | L2 | ENQUADRA | AA:…:01:0B → BB:…:01:00, quadro Q5              92 B
+019 | H2 | L1 | TRANSMITE | 736 bits no enlace H2–R1                       92 B
+020 | R1 | L1 | RECEBE | 736 bits do enlace H2–R1                          92 B
+021 | R1 | L2 | DESENQUADRA | verificação de erro correta, quadro Q5 descartado  74 B
+022 | R1 | L3 | ROTEIA | 10.0.3.0/24 via R4, custo 2, interface e1         74 B
+023 | R1 | L2 | ENQUADRA | BB:…:01:01 → BB:…:04:00, quadro Q2              92 B
+024 | R1 | L1 | TRANSMITE | 736 bits no enlace R1–R4                       92 B
+025 | R4 | L1 | RECEBE | 736 bits do enlace R1–R4                          92 B
+026 | R4 | L2 | DESENQUADRA | verificação de erro correta, quadro Q2 descartado  74 B
+027 | R4 | L3 | ROTEIA | 10.0.3.0/24 via R3, custo 1, interface e1         74 B
+028 | R1 | L2 | ENQUADRA | BB:…:01:01 → BB:…:04:00, quadro Q6              92 B
+029 | R1 | L1 | TRANSMITE | 736 bits no enlace R1–R4                       92 B
+030 | R4 | L1 | RECEBE | 736 bits do enlace R1–R4                          92 B
+031 | R4 | L2 | DESENQUADRA | verificação de erro correta, quadro Q6 descartado  74 B
+032 | R4 | L3 | ROTEIA | 10.0.3.0/24 via R3, custo 1, interface e1         74 B
+033 | R4 | L2 | ENQUADRA | BB:…:04:01 → BB:…:03:00, quadro Q3              92 B
+034 | R4 | L1 | TRANSMITE | 736 bits no enlace R4–R3                       92 B
+035 | R3 | L1 | RECEBE | 736 bits do enlace R4–R3                          92 B
+036 | R3 | L2 | DESENQUADRA | verificação de erro correta, quadro Q3 descartado  74 B
+037 | R3 | L3 | ROTEIA | 10.0.3.0/24 diretamente conectada, interface e2   74 B
+038 | R4 | L2 | ENQUADRA | BB:…:04:01 → BB:…:03:00, quadro Q7              92 B
+039 | R4 | L1 | TRANSMITE | 736 bits no enlace R4–R3                       92 B
+040 | R3 | L1 | RECEBE | 736 bits do enlace R4–R3                          92 B
+041 | R3 | L2 | DESENQUADRA | verificação de erro correta, quadro Q7 descartado  74 B
+042 | R3 | L3 | ROTEIA | 10.0.3.0/24 diretamente conectada, interface e2   74 B
+043 | R3 | L2 | ENQUADRA | BB:…:03:02 → AA:…:03:0A, quadro Q4              92 B
+044 | R3 | L1 | TRANSMITE | 736 bits no enlace R3–H4                       92 B
+045 | H4 | L1 | RECEBE | 736 bits do enlace R3–H4                          92 B
+046 | H4 | L2 | DESENQUADRA | verificação de erro correta, quadro Q4 descartado  74 B
+047 | H4 | L3 | DESENCAPSULA | 10.0.1.10 → 10.0.3.10, destino local        54 B
+048 | H4 | L4 | DEMULTIPLEXA | porta origem 5210 → sessão S-0001           46 B
+049 | H4 | L5 | ENCERRA | sessão S-0001 encerrada                          42 B
+050 | H4 | L6 | DECIFRA | conteúdo decifrado, octetos UTF-8                42 B
+051 | H4 | L7 | ENTREGA | mensagem entregue ao processo servidorWeb        42 B
+052 | R3 | L2 | ENQUADRA | BB:…:03:02 → AA:…:03:0A, quadro Q8              92 B
+053 | R3 | L1 | TRANSMITE | 736 bits no enlace R3–H4                       92 B
+054 | H4 | L1 | RECEBE | 736 bits do enlace R3–H4                          92 B
+055 | H4 | L2 | DESENQUADRA | verificação de erro correta, quadro Q8 descartado  74 B
+056 | H4 | L3 | DESENCAPSULA | 10.0.1.11 → 10.0.3.10, destino local        54 B
+057 | H4 | L4 | DEMULTIPLEXA | porta origem 5311 → sessão S-0002           46 B
+058 | H4 | L5 | ENCERRA | sessão S-0002 encerrada                          42 B
+059 | H4 | L6 | DECIFRA | conteúdo decifrado, octetos UTF-8                42 B
+060 | H4 | L7 | ENTREGA | mensagem entregue ao processo servidorWeb        42 B
+061 | -- | -- | METRICAS | 84 B úteis, 736 B transmitidos, η = 11,4%

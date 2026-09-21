@@ -1,0 +1,563 @@
+{
+  "_quebra": "Ponta de enlace cuja interface está numa rede diferente da rede do enlace",
+  "versao": "1.0",
+  "nome": "Topologia de referência — Projeto 1",
+  "redes": [
+    {
+      "id": "A",
+      "prefixo": "10.0.1.0/24",
+      "rotulo": "Rede A"
+    },
+    {
+      "id": "B",
+      "prefixo": "10.0.2.0/24",
+      "rotulo": "Rede B"
+    },
+    {
+      "id": "C",
+      "prefixo": "10.0.3.0/24",
+      "rotulo": "Rede C"
+    },
+    {
+      "id": "R1R4",
+      "prefixo": "10.0.14.0/24",
+      "rotulo": "R1–R4"
+    },
+    {
+      "id": "R1R2",
+      "prefixo": "10.0.12.0/24",
+      "rotulo": "R1–R2"
+    },
+    {
+      "id": "R2R3",
+      "prefixo": "10.0.23.0/24",
+      "rotulo": "R2–R3"
+    },
+    {
+      "id": "R3R4",
+      "prefixo": "10.0.34.0/24",
+      "rotulo": "R3–R4"
+    }
+  ],
+  "dispositivos": [
+    {
+      "nome": "H1",
+      "tipo": "computador",
+      "posicao": {
+        "x": 60,
+        "y": 60
+      },
+      "gateway": "10.0.1.1",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "rede": "A",
+          "logico": "10.0.1.10",
+          "mascara": 24,
+          "fisico": "AA:00:00:00:01:0A"
+        }
+      ]
+    },
+    {
+      "nome": "H2",
+      "tipo": "computador",
+      "posicao": {
+        "x": 60,
+        "y": 160
+      },
+      "gateway": "10.0.1.1",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "rede": "A",
+          "logico": "10.0.1.11",
+          "mascara": 24,
+          "fisico": "AA:00:00:00:01:0B"
+        }
+      ]
+    },
+    {
+      "nome": "H3",
+      "tipo": "computador",
+      "posicao": {
+        "x": 380,
+        "y": 280
+      },
+      "gateway": "10.0.2.1",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "rede": "B",
+          "logico": "10.0.2.10",
+          "mascara": 24,
+          "fisico": "AA:00:00:00:02:0A"
+        }
+      ]
+    },
+    {
+      "nome": "H4",
+      "tipo": "computador",
+      "posicao": {
+        "x": 700,
+        "y": 60
+      },
+      "gateway": "10.0.3.1",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "rede": "C",
+          "logico": "10.0.3.10",
+          "mascara": 24,
+          "fisico": "AA:00:00:00:03:0A"
+        }
+      ]
+    },
+    {
+      "nome": "H5",
+      "tipo": "computador",
+      "posicao": {
+        "x": 700,
+        "y": 160
+      },
+      "gateway": "10.0.3.1",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "rede": "C",
+          "logico": "10.0.3.11",
+          "mascara": 24,
+          "fisico": "AA:00:00:00:03:0B"
+        }
+      ]
+    },
+    {
+      "nome": "R1",
+      "tipo": "roteador",
+      "posicao": {
+        "x": 220,
+        "y": 110
+      },
+      "interfaces": [
+        {
+          "nome": "e0",
+          "rede": "A",
+          "logico": "10.0.1.1",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:01:00"
+        },
+        {
+          "nome": "e1",
+          "rede": "R1R4",
+          "logico": "10.0.14.1",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:01:01"
+        },
+        {
+          "nome": "e2",
+          "rede": "R1R2",
+          "logico": "10.0.12.1",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:01:02"
+        }
+      ]
+    },
+    {
+      "nome": "R2",
+      "tipo": "roteador",
+      "posicao": {
+        "x": 380,
+        "y": 200
+      },
+      "interfaces": [
+        {
+          "nome": "e0",
+          "rede": "R1R2",
+          "logico": "10.0.12.2",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:02:00"
+        },
+        {
+          "nome": "e1",
+          "rede": "R2R3",
+          "logico": "10.0.23.2",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:02:01"
+        },
+        {
+          "nome": "e2",
+          "rede": "B",
+          "logico": "10.0.2.1",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:02:02"
+        }
+      ]
+    },
+    {
+      "nome": "R3",
+      "tipo": "roteador",
+      "posicao": {
+        "x": 540,
+        "y": 110
+      },
+      "interfaces": [
+        {
+          "nome": "e0",
+          "rede": "R3R4",
+          "logico": "10.0.34.3",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:03:00"
+        },
+        {
+          "nome": "e1",
+          "rede": "R2R3",
+          "logico": "10.0.23.3",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:03:01"
+        },
+        {
+          "nome": "e2",
+          "rede": "C",
+          "logico": "10.0.3.1",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:03:02"
+        }
+      ]
+    },
+    {
+      "nome": "R4",
+      "tipo": "roteador",
+      "posicao": {
+        "x": 380,
+        "y": 50
+      },
+      "interfaces": [
+        {
+          "nome": "e0",
+          "rede": "R1R4",
+          "logico": "10.0.14.4",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:04:00"
+        },
+        {
+          "nome": "e1",
+          "rede": "R3R4",
+          "logico": "10.0.34.4",
+          "mascara": 24,
+          "fisico": "BB:00:00:00:04:01"
+        }
+      ]
+    }
+  ],
+  "enlaces": [
+    {
+      "id": "E-A",
+      "tipo": "difusao",
+      "rede": "A",
+      "custo": 0,
+      "ativo": true,
+      "rotulo": "Rede A",
+      "pontas": [
+        {
+          "dispositivo": "H1",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "H2",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "R1",
+          "interface": "e0"
+        }
+      ]
+    },
+    {
+      "id": "E-B",
+      "tipo": "difusao",
+      "rede": "B",
+      "custo": 0,
+      "ativo": true,
+      "rotulo": "Rede B",
+      "pontas": [
+        {
+          "dispositivo": "H3",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "R2",
+          "interface": "e2"
+        }
+      ]
+    },
+    {
+      "id": "E-C",
+      "tipo": "difusao",
+      "rede": "C",
+      "custo": 0,
+      "ativo": true,
+      "rotulo": "Rede C",
+      "pontas": [
+        {
+          "dispositivo": "H4",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "H5",
+          "interface": "eth0"
+        },
+        {
+          "dispositivo": "R3",
+          "interface": "e2"
+        }
+      ]
+    },
+    {
+      "id": "E-R1-R4",
+      "tipo": "ponto-a-ponto",
+      "rede": "R1R4",
+      "custo": 1,
+      "ativo": true,
+      "rotulo": "R1–R4",
+      "pontas": [
+        {
+          "dispositivo": "R1",
+          "interface": "e1"
+        },
+        {
+          "dispositivo": "R4",
+          "interface": "e1"
+        }
+      ]
+    },
+    {
+      "id": "E-R1-R2",
+      "tipo": "ponto-a-ponto",
+      "rede": "R1R2",
+      "custo": 2,
+      "ativo": true,
+      "rotulo": "R1–R2",
+      "pontas": [
+        {
+          "dispositivo": "R1",
+          "interface": "e2"
+        },
+        {
+          "dispositivo": "R2",
+          "interface": "e0"
+        }
+      ]
+    },
+    {
+      "id": "E-R2-R3",
+      "tipo": "ponto-a-ponto",
+      "rede": "R2R3",
+      "custo": 1,
+      "ativo": true,
+      "rotulo": "R2–R3",
+      "pontas": [
+        {
+          "dispositivo": "R2",
+          "interface": "e1"
+        },
+        {
+          "dispositivo": "R3",
+          "interface": "e1"
+        }
+      ]
+    },
+    {
+      "id": "E-R4-R3",
+      "tipo": "ponto-a-ponto",
+      "rede": "R3R4",
+      "custo": 1,
+      "ativo": true,
+      "rotulo": "R4–R3",
+      "pontas": [
+        {
+          "dispositivo": "R4",
+          "interface": "e0"
+        },
+        {
+          "dispositivo": "R3",
+          "interface": "e0"
+        }
+      ]
+    }
+  ],
+  "parametros": {
+    "cabecalhos": {
+      "L7": 0,
+      "L6": 0,
+      "L5": 4,
+      "L4": 8,
+      "L3": 20,
+      "L2": 14,
+      "T2": 4
+    },
+    "limite_segmento": 64,
+    "codificacao": "UTF-8",
+    "cifra": {
+      "algoritmo": "xor",
+      "chave": "REDES"
+    },
+    "verificacao": {
+      "algoritmo": "crc32",
+      "polinomio": "0xEDB88320"
+    },
+    "sessao": {
+      "prefixo": "S-",
+      "digitos": 4
+    },
+    "velocidades_ms": {
+      "lenta": 1200,
+      "media": 500,
+      "rapida": 150
+    }
+  },
+  "casos": [
+    {
+      "id": "C1",
+      "titulo": "Entrega direta",
+      "fluxos": [
+        {
+          "id": "F1",
+          "origem": {
+            "dispositivo": "H1",
+            "processo": "navegador",
+            "porta": 5210
+          },
+          "destino": {
+            "dispositivo": "H2",
+            "processo": "servidorWeb",
+            "porta": 443
+          },
+          "mensagem": "GET /index.html HTTP/1.1 Host: fesa.edu.br"
+        }
+      ],
+      "eventos_externos": []
+    },
+    {
+      "id": "C2",
+      "titulo": "Entrega indireta (caso central)",
+      "padrao": true,
+      "fluxos": [
+        {
+          "id": "F1",
+          "origem": {
+            "dispositivo": "H1",
+            "processo": "navegador",
+            "porta": 5210
+          },
+          "destino": {
+            "dispositivo": "H4",
+            "processo": "servidorWeb",
+            "porta": 443
+          },
+          "mensagem": "GET /index.html HTTP/1.1 Host: fesa.edu.br"
+        }
+      ],
+      "eventos_externos": []
+    },
+    {
+      "id": "C3",
+      "titulo": "Demultiplexação",
+      "modo": "concorrente",
+      "fluxos": [
+        {
+          "id": "F1",
+          "origem": {
+            "dispositivo": "H1",
+            "processo": "navegador",
+            "porta": 5210
+          },
+          "destino": {
+            "dispositivo": "H4",
+            "processo": "servidorWeb",
+            "porta": 443
+          },
+          "mensagem": "GET /index.html HTTP/1.1 Host: fesa.edu.br"
+        },
+        {
+          "id": "F2",
+          "origem": {
+            "dispositivo": "H2",
+            "processo": "navegador",
+            "porta": 5311
+          },
+          "destino": {
+            "dispositivo": "H4",
+            "processo": "servidorWeb",
+            "porta": 443
+          },
+          "mensagem": "GET /contato.html HTTP/1.1 Host: fesa.edu.br"
+        }
+      ],
+      "eventos_externos": []
+    },
+    {
+      "id": "C4",
+      "titulo": "Falha de enlace",
+      "herda": "C2",
+      "eventos_externos": [
+        {
+          "tipo": "enlace_fora",
+          "enlace": "E-R1-R4"
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "titulo": "Destino inalcançável",
+      "fluxos": [
+        {
+          "id": "F1",
+          "origem": {
+            "dispositivo": "H1",
+            "processo": "navegador",
+            "porta": 5210
+          },
+          "destino": {
+            "logico": "10.0.9.10",
+            "porta": 443
+          },
+          "mensagem": "GET /index.html HTTP/1.1 Host: fesa.edu.br"
+        }
+      ],
+      "eventos_externos": []
+    },
+    {
+      "id": "C6",
+      "titulo": "Erro de transmissão",
+      "herda": "C2",
+      "eventos_externos": [
+        {
+          "tipo": "erro_bit",
+          "enlace": "E-R4-R3",
+          "quadro": "Q3",
+          "bit": 100
+        }
+      ]
+    },
+    {
+      "id": "C7",
+      "titulo": "Mensagem longa",
+      "fluxos": [
+        {
+          "id": "F1",
+          "origem": {
+            "dispositivo": "H1",
+            "processo": "navegador",
+            "porta": 5210
+          },
+          "destino": {
+            "dispositivo": "H4",
+            "processo": "servidorWeb",
+            "porta": 443
+          },
+          "mensagem": "GET /disciplinas/comunicacao-de-dados/projeto-1/simulador-modelo-osi/index.html HTTP/1.1 Host: fesa.edu.br Accept: text/html Connection: keep-alive User-Agent: navegador-fesa/1.0.0"
+        }
+      ],
+      "eventos_externos": []
+    }
+  ]
+}
