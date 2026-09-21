@@ -1,0 +1,77 @@
+{
+  "nome": "Topologia de referencia - Projeto 1",
+  "descricao": "Tres redes locais, quatro roteadores e cinco computadores. Trocar este arquivo troca a rede simulada, sem alterar o programa.",
+
+  "convencoes": {
+    "cabecalhos": {
+      "5": 4,
+      "4": 8,
+      "3": 20,
+      "2": 14
+    },
+    "finalizador_camada_2": 4,
+    "limiar_segmentacao_octetos": 64,
+    "limite_segmento_octetos": 40
+  },
+
+  "redes": [
+    { "nome": "Rede A", "prefixo": "10.0.1.0/24" },
+    { "nome": "Rede B", "prefixo": "10.0.2.0/24" },
+    { "nome": "Rede C", "prefixo": "10.0.3.0/24" }
+  ],
+
+  "computadores": [
+    { "nome": "H1", "interface": "eth0", "logico": "10.0.1.10", "fisico": "AA:00:00:00:01:0A", "rede": "Rede A" },
+    { "nome": "H2", "interface": "eth0", "logico": "10.0.1.11", "fisico": "AA:00:00:00:01:0B", "rede": "Rede A" },
+    { "nome": "H3", "interface": "eth0", "logico": "10.0.2.10", "fisico": "AA:00:00:00:02:0A", "rede": "Rede B" },
+    { "nome": "H4", "interface": "eth0", "logico": "10.0.3.10", "fisico": "AA:00:00:00:03:0A", "rede": "Rede C" },
+    { "nome": "H5", "interface": "eth0", "logico": "10.0.3.11", "fisico": "AA:00:00:00:03:0B", "rede": "Rede C" }
+  ],
+
+  "roteadores": [
+    {
+      "nome": "R1",
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.1.1",  "fisico": "BB:00:00:00:01:00", "rede": "Rede A" },
+        { "nome": "e1", "logico": "10.0.14.1", "fisico": "BB:00:00:00:01:01", "rede": "enlace R1-R4" },
+        { "nome": "e2", "logico": "10.0.12.1", "fisico": "BB:00:00:00:01:02", "rede": "enlace R1-R2" }
+      ]
+    },
+    {
+      "nome": "R2",
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.12.2", "fisico": "BB:00:00:00:02:00", "rede": "enlace R1-R2" },
+        { "nome": "e1", "logico": "10.0.23.2", "fisico": "BB:00:00:00:02:01", "rede": "enlace R2-R3" },
+        { "nome": "e2", "logico": "10.0.2.1",  "fisico": "BB:00:00:00:02:02", "rede": "Rede B" }
+      ]
+    },
+    {
+      "nome": "R3",
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.34.3", "fisico": "BB:00:00:00:03:00", "rede": "enlace R3-R4" },
+        { "nome": "e1", "logico": "10.0.23.3", "fisico": "BB:00:00:00:03:01", "rede": "enlace R2-R3" },
+        { "nome": "e2", "logico": "10.0.3.1",  "fisico": "BB:00:00:00:03:02", "rede": "Rede C" }
+      ]
+    },
+    {
+      "nome": "R4",
+      "interfaces": [
+        { "nome": "e0", "logico": "10.0.14.4", "fisico": "BB:00:00:00:04:00", "rede": "enlace R1-R4" },
+        { "nome": "e1", "logico": "10.0.34.4", "fisico": "BB:00:00:00:04:01", "rede": "enlace R3-R4" }
+      ]
+    }
+  ],
+
+  "enlaces": [
+    { "a": "H1:eth0", "b": "R1:e0", "custo": 0, "rede": "Rede A" },
+    { "a": "H2:eth0", "b": "R1:e0", "custo": 0, "rede": "Rede A" },
+    { "a": "H3:eth0", "b": "R2:e2", "custo": 0, "rede": "Rede B" },
+    { "a": "H4:eth0", "b": "R3:e2", "custo": 0, "rede": "Rede C" },
+    { "a": "H5:eth0", "b": "R3:e2", "custo": 0, "rede": "Rede C" },
+
+    { "a": "R1:e1", "b": "R4:e0", "custo": 1, "rede": "enlace R1-R4" },
+    { "a": "R1:e2", "b": "R2:e0", "custo": 2, "rede": "enlace R1-R2" },
+    { "a": "R2:e1", "b": "R3:e1", "custo": 1, "rede": "enlace R2-R3" },
+    { "a": "R3:e0", "b": "R4:e1", "custo": 1, "rede": "enlace R3-R4" }
+  ]
+}

@@ -1,0 +1,78 @@
+001 | H1 | L7 | GERA | processo 'navegador' gera a mensagem                                            100 B
+002 | H1 | L6 | CODIFICA | texto em 100 octetos UTF-8 cifrado com XOR 0x5a; tamanho inalterado         100 B
+003 | H1 | L5 | ABRE | sessao S-0001 aberta, uma unica vez, antes da segmentacao                       104 B
+004 | H1 | L4 | SEGMENTA | segmento 1 de 3: porta 5210 -> 443 (104 octetos acima do limiar de 64)       48 B
+005 | H1 | L4 | SEGMENTA | segmento 2 de 3: porta 5210 -> 443                                           48 B
+006 | H1 | L4 | SEGMENTA | segmento 3 de 3: porta 5210 -> 443                                           32 B
+007 | H1 | L3 | ENCAPSULA | pacote H1-P1: 10.0.1.10 -> 10.0.3.10                                        68 B
+008 | H1 | L3 | ROTEIA | 10.0.3.10 fora da rede local: entrega indireta via R1, interface eth0          68 B
+009 | H1 | L3 | ENCAPSULA | pacote H1-P2: 10.0.1.10 -> 10.0.3.10                                        68 B
+010 | H1 | L3 | ROTEIA | 10.0.3.10 fora da rede local: entrega indireta via R1, interface eth0          68 B
+011 | H1 | L3 | ENCAPSULA | pacote H1-P3: 10.0.1.10 -> 10.0.3.10                                        52 B
+012 | H1 | L3 | ROTEIA | 10.0.3.10 fora da rede local: entrega indireta via R1, interface eth0          52 B
+013 | H1 | L2 | ENQUADRA | pacote H1-P1, quadro Q1 para R1: AA:00:00:00:01:0A -> BB:00:00:00:01:00; soma 0x00003d85 86 B
+014 | H1 | L2 | ENQUADRA | pacote H1-P2, quadro Q2 para R1: AA:00:00:00:01:0A -> BB:00:00:00:01:00; soma 0x000039cf 86 B
+015 | H1 | L2 | ENQUADRA | pacote H1-P3, quadro Q3 para R1: AA:00:00:00:01:0A -> BB:00:00:00:01:00; soma 0x0000343a 70 B
+016 | H1 | L1 | TRANSMITE | pacote H1-P1, quadro Q1 convertido em 688 bits e transmitido                86 B
+017 | H1 | L1 | TRANSMITE | pacote H1-P2, quadro Q2 convertido em 688 bits e transmitido                86 B
+018 | H1 | L1 | TRANSMITE | pacote H1-P3, quadro Q3 convertido em 560 bits e transmitido                70 B
+019 | R1 | L1 | RECEBE | 688 bits recebidos e reagrupados no pacote H1-P1, quadro Q1                    86 B
+020 | R1 | L2 | DESENQUADRA | pacote H1-P1, quadro Q1 de AA:00:00:00:01:0A conferido e descartado       68 B
+021 | R1 | L3 | ROTEIA | 10.0.3.0/24 via R4, custo 2, interface e1                                      68 B
+022 | R1 | L2 | ENQUADRA | pacote H1-P1, quadro Q4 para R4: BB:00:00:00:01:01 -> BB:00:00:00:04:00; soma 0x00003d7a 86 B
+023 | R1 | L1 | TRANSMITE | pacote H1-P1, quadro Q4 convertido em 688 bits e transmitido                86 B
+024 | R1 | L1 | RECEBE | 688 bits recebidos e reagrupados no pacote H1-P2, quadro Q2                    86 B
+025 | R1 | L2 | DESENQUADRA | pacote H1-P2, quadro Q2 de AA:00:00:00:01:0A conferido e descartado       68 B
+026 | R1 | L3 | ROTEIA | 10.0.3.0/24 via R4, custo 2, interface e1                                      68 B
+027 | R1 | L2 | ENQUADRA | pacote H1-P2, quadro Q5 para R4: BB:00:00:00:01:01 -> BB:00:00:00:04:00; soma 0x000039c4 86 B
+028 | R1 | L1 | TRANSMITE | pacote H1-P2, quadro Q5 convertido em 688 bits e transmitido                86 B
+029 | R1 | L1 | RECEBE | 560 bits recebidos e reagrupados no pacote H1-P3, quadro Q3                    70 B
+030 | R1 | L2 | DESENQUADRA | pacote H1-P3, quadro Q3 de AA:00:00:00:01:0A conferido e descartado       52 B
+031 | R1 | L3 | ROTEIA | 10.0.3.0/24 via R4, custo 2, interface e1                                      52 B
+032 | R1 | L2 | ENQUADRA | pacote H1-P3, quadro Q6 para R4: BB:00:00:00:01:01 -> BB:00:00:00:04:00; soma 0x0000342f 70 B
+033 | R1 | L1 | TRANSMITE | pacote H1-P3, quadro Q6 convertido em 560 bits e transmitido                70 B
+034 | R4 | L1 | RECEBE | 688 bits recebidos e reagrupados no pacote H1-P1, quadro Q4                    86 B
+035 | R4 | L2 | DESENQUADRA | pacote H1-P1, quadro Q4 de BB:00:00:00:01:01 conferido e descartado       68 B
+036 | R4 | L3 | ROTEIA | 10.0.3.0/24 via R3, custo 1, interface e1                                      68 B
+037 | R4 | L2 | ENQUADRA | pacote H1-P1, quadro Q7 para R3: BB:00:00:00:04:01 -> BB:00:00:00:03:00; soma 0x00003d7c 86 B
+038 | R4 | L1 | TRANSMITE | pacote H1-P1, quadro Q7 convertido em 688 bits e transmitido                86 B
+039 | R4 | L1 | RECEBE | 688 bits recebidos e reagrupados no pacote H1-P2, quadro Q5                    86 B
+040 | R4 | L2 | DESENQUADRA | pacote H1-P2, quadro Q5 de BB:00:00:00:01:01 conferido e descartado       68 B
+041 | R4 | L3 | ROTEIA | 10.0.3.0/24 via R3, custo 1, interface e1                                      68 B
+042 | R4 | L2 | ENQUADRA | pacote H1-P2, quadro Q8 para R3: BB:00:00:00:04:01 -> BB:00:00:00:03:00; soma 0x000039c6 86 B
+043 | R4 | L1 | TRANSMITE | pacote H1-P2, quadro Q8 convertido em 688 bits e transmitido                86 B
+044 | R4 | L1 | RECEBE | 560 bits recebidos e reagrupados no pacote H1-P3, quadro Q6                    70 B
+045 | R4 | L2 | DESENQUADRA | pacote H1-P3, quadro Q6 de BB:00:00:00:01:01 conferido e descartado       52 B
+046 | R4 | L3 | ROTEIA | 10.0.3.0/24 via R3, custo 1, interface e1                                      52 B
+047 | R4 | L2 | ENQUADRA | pacote H1-P3, quadro Q9 para R3: BB:00:00:00:04:01 -> BB:00:00:00:03:00; soma 0x00003431 70 B
+048 | R4 | L1 | TRANSMITE | pacote H1-P3, quadro Q9 convertido em 560 bits e transmitido                70 B
+049 | R3 | L1 | RECEBE | 688 bits recebidos e reagrupados no pacote H1-P1, quadro Q7                    86 B
+050 | R3 | L2 | DESENQUADRA | pacote H1-P1, quadro Q7 de BB:00:00:00:04:01 conferido e descartado       68 B
+051 | R3 | L3 | ROTEIA | entrega direta a H4 pela interface e2                                          68 B
+052 | R3 | L2 | ENQUADRA | pacote H1-P1, quadro Q10 para H4: BB:00:00:00:03:02 -> AA:00:00:00:03:0A; soma 0x00003d8b 86 B
+053 | R3 | L1 | TRANSMITE | pacote H1-P1, quadro Q10 convertido em 688 bits e transmitido               86 B
+054 | R3 | L1 | RECEBE | 688 bits recebidos e reagrupados no pacote H1-P2, quadro Q8                    86 B
+055 | R3 | L2 | DESENQUADRA | pacote H1-P2, quadro Q8 de BB:00:00:00:04:01 conferido e descartado       68 B
+056 | R3 | L3 | ROTEIA | entrega direta a H4 pela interface e2                                          68 B
+057 | R3 | L2 | ENQUADRA | pacote H1-P2, quadro Q11 para H4: BB:00:00:00:03:02 -> AA:00:00:00:03:0A; soma 0x000039d5 86 B
+058 | R3 | L1 | TRANSMITE | pacote H1-P2, quadro Q11 convertido em 688 bits e transmitido               86 B
+059 | R3 | L1 | RECEBE | 560 bits recebidos e reagrupados no pacote H1-P3, quadro Q9                    70 B
+060 | R3 | L2 | DESENQUADRA | pacote H1-P3, quadro Q9 de BB:00:00:00:04:01 conferido e descartado       52 B
+061 | R3 | L3 | ROTEIA | entrega direta a H4 pela interface e2                                          52 B
+062 | R3 | L2 | ENQUADRA | pacote H1-P3, quadro Q12 para H4: BB:00:00:00:03:02 -> AA:00:00:00:03:0A; soma 0x00003440 70 B
+063 | R3 | L1 | TRANSMITE | pacote H1-P3, quadro Q12 convertido em 560 bits e transmitido               70 B
+064 | H4 | L1 | RECEBE | 688 bits recebidos e reagrupados no pacote H1-P1, quadro Q10                   86 B
+065 | H4 | L2 | DESENQUADRA | pacote H1-P1, quadro Q10 de BB:00:00:00:03:02 conferido e descartado      68 B
+066 | H4 | L3 | ENTREGA | pacote H1-P1 destinado a 10.0.3.10; entregue a camada 4                       48 B
+067 | H4 | L4 | RECEBE | segmento 1 de 3 do fluxo 5210 -> 443 guardado; aguardando 2                    48 B
+068 | H4 | L1 | RECEBE | 688 bits recebidos e reagrupados no pacote H1-P2, quadro Q11                   86 B
+069 | H4 | L2 | DESENQUADRA | pacote H1-P2, quadro Q11 de BB:00:00:00:03:02 conferido e descartado      68 B
+070 | H4 | L3 | ENTREGA | pacote H1-P2 destinado a 10.0.3.10; entregue a camada 4                       48 B
+071 | H4 | L4 | RECEBE | segmento 2 de 3 do fluxo 5210 -> 443 guardado; aguardando 1                    48 B
+072 | H4 | L1 | RECEBE | 560 bits recebidos e reagrupados no pacote H1-P3, quadro Q12                   70 B
+073 | H4 | L2 | DESENQUADRA | pacote H1-P3, quadro Q12 de BB:00:00:00:03:02 conferido e descartado      52 B
+074 | H4 | L3 | ENTREGA | pacote H1-P3 destinado a 10.0.3.10; entregue a camada 4                       32 B
+075 | H4 | L4 | REMONTA | 3 segmento(s) do fluxo 5210 -> 443 remontado(s) em ordem; porta 443 -> 'servidorWeb' 104 B
+076 | H4 | L5 | ENTREGA | sessao S-0001 reconhecida; mensagem entregue a camada 6                      100 B
+077 | H4 | L6 | DECIFRA | 100 octetos decifrados com XOR e convertidos em texto                        100 B
+078 | H4 | L7 | ENTREGA | mensagem entregue ao processo 'servidorWeb': 'Ola H4, aqui e o H1 com uma mensagem longa: passa do limiar e a camada 4 a divide em tres segmentos.' 100 B

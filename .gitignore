@@ -22,3 +22,11 @@ node_modules/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Artefatos locais do empacotamento
+SimuladorOSI
+
+# Registros salvos avulsos, ao lado do programa. A barra inicial limita o
+# padrao a raiz: sem ela, ele tambem esconderia registros/registro_E1.txt,
+# que fazem parte da entrega.
+/registro_*.txt
