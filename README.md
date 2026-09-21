@@ -1,99 +1,107 @@
 # Simulador do Modelo OSI
 
-Especificacao aberta, com casos de validacao numericos, para construir um
-simulador do modelo OSI de sete camadas sobre uma rede com multiplos
-roteadores.
+## Como Executar
+Clique duas vezes no arquivo `SimuladorOSI.exe`, na raiz do repositório. Não é necessário instalar o Python nem nenhuma biblioteca.
 
-O simulador transporta uma mensagem entre dois computadores e mostra, passo a
-passo, o que cada camada de cada dispositivo faz com a unidade de dados que
-recebe: os cabecalhos sendo acrescentados na descida e removidos na subida, o
-par de enderecos fisicos sendo trocado a cada salto enquanto o par de
-enderecos logicos permanece fixo, e a decisao de rota acontecendo na camada 3
-de cada roteador.
+O arquivo `topologia.json` deve ficar na mesma pasta do executável. Se ele não for encontrado, o programa usa uma cópia embutida no próprio executável.
 
-A linguagem e livre, assim como a arquitetura interna e a forma de
-apresentacao. O que esta fixado sao os numeros: quem seguir a especificacao
-produz os mesmos resultados de qualquer outra implementacao, em qualquer
-linguagem.
+---
 
-## A rede
+**Instituição:** Faculdade Engenheiro Salvador Arena (FESA)  
+**Disciplina:** Comunicação de Dados  
+**Professor:** Prof. Vinícius S. Borges  
+**Semestre:** 7º Semestre  
 
-Tres redes locais, quatro roteadores, cinco computadores. Os custos de enlace
-tornam deterministica a escolha de rota, e os enderecos sao fixos, de modo que
-duas implementacoes distintas possam ser comparadas linha a linha.
+**Autoria (Equipe):**
+* Guilherme de Oliveira Mattos - RA: 082230009
+* Luigi Guilherme Pereira Silva - RA: 082230025
+* Paulo Henrique de Carvalho Santos - RA: 082230006
+* Pedro Henrique de Holanda Carvalho - RA: 082230005
+* Tayson Moises Costa do Carmo - RA: 082230008
 
-## Casos de validacao
+## Descrição do Projeto
+Simulador visual do modelo OSI de sete camadas em uma rede com três redes locais, quatro roteadores (R1 a R4) e cinco computadores (H1 a H5). O programa mostra passo a passo o percurso de uma mensagem: o encapsulamento na origem, a decisão de rota na camada 3 de cada roteador, a troca do quadro e dos endereços físicos a cada salto e o desencapsulamento no destino.
 
-Uma implementacao correta reproduz estes valores. A mensagem de referencia tem
-42 octetos, exceto em E7.
+Os sete casos do enunciado (C1 a C7) podem ser escolhidos na interface, incluindo queda de enlace, destino inalcançável e erro de bit. Ao final de cada execução o programa mostra os octetos transmitidos e a eficiência (η), e compara a eficiência do caso C1 (um enlace) com a do caso C2 (quatro enlaces).
 
-| # | Caso | Quadros | Octetos transmitidos | Eficiencia |
-|---|------|---------|----------------------|------------|
-| E1 | Entrega direta | 1 | 92 | 45,7% |
-| E2 | Entrega indireta, tres roteadores | 4 | 368 | 11,4% |
-| E3 | Demultiplexacao por porta | 8 | 736 | 11,4% |
-| E4 | Falha de enlace e desvio de rota | 4 | 368 | 11,4% |
-| E5 | Destino inalcancavel | 1 | 92 | sem entrega |
-| E6 | Erro de bit detectado na camada 2 | 3 | 276 | sem entrega |
-| E7 | Mensagem longa, tres segmentos | 12 | 968 | 10,3% |
+## Requisitos de Ambiente
+* Para usar o executável: Windows, sem nenhuma instalação.
+* Para rodar pelo código-fonte: Python 3 (testado com Python 3.14), executando `python main.py`.
+* Bibliotecas: apenas as da biblioteca padrão do Python (`tkinter`, `json`, `os`, `sys`, `ipaddress`, `zlib`). Nenhuma biblioteca externa.
+* O executável foi gerado com **PyInstaller**, em arquivo único e com o `topologia.json` embutido como cópia de reserva:
 
-E1 e E2 transportam exatamente a mesma mensagem e diferem apenas no numero de
-enlaces. A eficiencia cai de 45,7% para 11,4% sem que um unico octeto de dado
-a mais tenha sido enviado. Essa diferenca e o custo do empilhamento, e e o que
-o projeto existe para tornar visivel.
+      pyinstaller --onefile --windowed --name SimuladorOSI --add-data "topologia.json;." main.py
 
-## Documentos
-
-| Documento | Conteudo |
-|-----------|----------|
-| [Especificacao](./docs/especificacao.pdf) | Topologia, enderecos, requisitos, convencoes, os sete casos de validacao com os valores esperados e o passo a passo da entrega |
-| [Guia de documentacao](./docs/guia_de_documentacao.pdf) | O que escrever no README, nos tutoriais e na documentacao tecnica |
-
-## Como participar
-
-O fluxo e **fork + pull request**. A `main` guarda apenas a especificacao;
-cada implementacao vive na branch do proprio grupo.
-
-1. Fazer o **fork** deste repositorio;
-2. Clonar o fork na maquina local (apenas um integrante do grupo precisa);
-3. Desenvolver o projeto inteiro no fork, seguindo a estrutura sugerida na
-   especificacao;
-4. Enviar commits ao longo do desenvolvimento, e nao em um unico envio no
-   final;
-5. Abrir um **Pull Request** do fork para a **branch do seu grupo** neste
-   repositorio, com o titulo no formato
-   `Entrega - Grupo X - Nome dos integrantes`;
-6. Aguardar a revisao. Apos aprovacao, o trabalho e incorporado a branch
-   dedicada do grupo, preservando a autoria de todos os commits.
-
-O passo a passo detalhado, com os comandos e as telas, esta na
-[especificacao](./docs/especificacao.pdf).
-
-## Branches
-
-| Branch | Conteudo |
-|--------|----------|
-| `main` | Especificacao, guia de documentacao e este README |
-| `grupo1` a `grupo8` | Uma branch por grupo, com a entrega aprovada |
-
-Nenhum grupo faz commit direto neste repositorio, abre Pull Request para a
-`main` ou altera a branch de outro grupo. Uma entrega nessas condicoes e
-devolvida sem analise.
-
-## Estrutura
+## Estrutura do Repositório
 
     simulador-osi/
-    |-- README.md
-    |-- .gitignore
-    `-- docs/
+    |-- SimuladorOSI.exe        Programa pronto para executar (duplo clique)
+    |-- topologia.json          Rede simulada: redes, endereços, interfaces, custos e posições no mapa
+    |-- main.py                 Ponto de entrada do código-fonte
+    |-- README.md               Este arquivo
+    |-- registros/              Registros de eventos dos sete casos
+    |   `-- registro_C1.txt a registro_C7.txt
+    |-- simulador/              Código-fonte do simulador
+    |   |-- pdu.py
+    |   |-- camadas.py
+    |   |-- dispositivos.py
+    |   |-- rede.py
+    |   |-- motor.py
+    |   `-- visual.py
+    `-- docs/                   Especificação, guia de documentação, tutoriais e documentação técnica
         |-- especificacao.pdf
-        `-- guia_de_documentacao.pdf
+        |-- guia_de_documentacao.pdf
+        |-- tutorial_execucao.pdf
+        |-- tutorial_uso.pdf
+        `-- documentacao_projeto.pdf
 
-A estrutura do projeto em si, dentro do fork de cada grupo, esta descrita na
-especificacao.
+## Arquivos de Código
+* `main.py`: cria o motor e a interface e inicia o programa. Se houver erro ao iniciar, mostra uma janela com a mensagem em vez de fechar.
+* `simulador/pdu.py`: unidades de dados (Mensagem, Segmento, Pacote e Quadro) com o tamanho de cada cabeçalho. O Quadro calcula a verificação de erro (CRC32).
+* `simulador/camadas.py`: as sete classes de camada, cada uma com os métodos `descer` e `subir`. Inclui a cifragem (camada 6), o identificador de sessão (camada 5), a segmentação e remontagem (camada 4), o encaminhamento (camada 3), o enquadramento e a verificação de erro (camada 2) e a transmissão em bits (camada 1).
+* `simulador/dispositivos.py`: Computador (camadas 1 a 7) e Roteador (camadas 1 a 3, com uma interface e um endereço físico para cada enlace).
+* `simulador/rede.py`: leitura do `topologia.json` ao lado do executável (ou da cópia embutida) e cálculo das tabelas de encaminhamento pelo caminho de menor custo.
+* `simulador/motor.py`: registro de eventos, contadores de quadros e sessões, execução dos casos C1 a C7 e cálculo da eficiência.
+* `simulador/visual.py`: interface gráfica em Tkinter. Apenas lê a lista de eventos gerada pelo motor.
 
-## Duvidas e discussao
+## Funcionalidades
+| O que faz | Onde está implementado |
+| :--- | :--- |
+| Leitura da topologia a partir de arquivo externo | `simulador/rede.py` |
+| Tabelas de encaminhamento pelo menor custo (desempate pelo menor nome de roteador) | `simulador/rede.py` |
+| Pilha de 7 camadas nos computadores e 3 camadas nos roteadores | `simulador/dispositivos.py` |
+| Encapsulamento e desencapsulamento com os tamanhos de cabeçalho fixos | `simulador/camadas.py` e `simulador/pdu.py` |
+| Cifragem na camada 6 da origem e decifragem só na camada 6 do destino | `simulador/camadas.py` |
+| Identificador de sessão (S-0001, S-0002...) | `simulador/camadas.py` e `simulador/motor.py` |
+| Segmentação em até 40 octetos e remontagem em ordem | `simulador/camadas.py` |
+| Quadro novo e numerado a cada salto (Q1, Q2...) | `simulador/camadas.py` |
+| Verificação de erro (CRC) e descarte do quadro com erro de bit | `simulador/camadas.py` e `simulador/pdu.py` |
+| Queda de enlace com recálculo das rotas (caso C4) | `simulador/motor.py` e `simulador/rede.py` |
+| Registro de eventos, quadros transmitidos e eficiência | `simulador/motor.py` |
+| Mapa, pilhas, unidade de dados, endereços, controles e registro na tela | `simulador/visual.py` |
+| Alternância entre a pilha OSI e a pilha TCP/IP | `simulador/visual.py` |
+| Salvar o registro completo em arquivo `.txt` | `simulador/visual.py` |
 
-Abra uma **Issue**. Perguntas sobre a especificacao, casos ambiguos e
-divergencias de valores sao discutidos ali, ficam visiveis para todos e evitam
-que a mesma questao seja respondida varias vezes.
+## Resultados de Referência
+Valores produzidos pelo simulador, iguais ao quadro resumo da especificação:
+
+| Caso | Quadros | Octetos transmitidos | Eficiência |
+| :--- | :---: | :---: | :---: |
+| C1 Entrega direta | 1 | 92 | 45,7% |
+| C2 Entrega indireta | 4 | 368 | 11,4% |
+| C3 Demultiplexação | 8 | 736 | 11,4% |
+| C4 Falha de enlace | 4 | 368 | 11,4% |
+| C5 Destino inalcançável | 1 | 92 | 0 |
+| C6 Erro de transmissão | 3 | 276 | 0 |
+| C7 Mensagem longa | 12 | 968 | 10,3% |
+
+## Documentação
+* [Tutorial de Execução](./docs/tutorial_execucao.pdf)
+* [Tutorial de Uso](./docs/tutorial_uso.pdf)
+* [Documentação Técnica](./docs/documentacao_projeto.pdf)
+* [Especificação do projeto](./docs/especificacao.pdf)
+
+## Por onde começar
+1. Abra o `SimuladorOSI.exe` seguindo o **Tutorial de Execução**.
+2. Escolha o caso **C2. Caso Central (H1->H4)**, clique em **Executar Cenário** e confira os quatro quadros e a eficiência de 11,4% com o **Tutorial de Uso**.
+3. Consulte a **Documentação Técnica** para entender a separação entre as camadas e as convenções de simulação.
