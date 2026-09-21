@@ -1,0 +1,201 @@
+{
+  "dispositivos": [
+    {
+      "nome": "H1",
+      "tipo": "host",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "ip": "10.0.1.10",
+          "mac": "AA:00:00:00:01:0A",
+          "vizinho": "R1"
+        }
+      ]
+    },
+    {
+      "nome": "H2",
+      "tipo": "host",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "ip": "10.0.1.11",
+          "mac": "AA:00:00:00:01:0B",
+          "vizinho": "R1"
+        }
+      ]
+    },
+    {
+      "nome": "H3",
+      "tipo": "host",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "ip": "10.0.2.10",
+          "mac": "AA:00:00:00:02:0A",
+          "vizinho": "R2"
+        }
+      ]
+    },
+    {
+      "nome": "H4",
+      "tipo": "host",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "ip": "10.0.3.10",
+          "mac": "AA:00:00:00:03:0A",
+          "vizinho": "R3"
+        }
+      ]
+    },
+    {
+      "nome": "H5",
+      "tipo": "host",
+      "interfaces": [
+        {
+          "nome": "eth0",
+          "ip": "10.0.3.11",
+          "mac": "AA:00:00:00:03:0B",
+          "vizinho": "R3"
+        }
+      ]
+    },
+    {
+      "nome": "R1",
+      "tipo": "roteador",
+      "interfaces": [
+        {
+          "nome": "e0",
+          "ip": "10.0.1.1",
+          "mac": "BB:00:00:00:01:00",
+          "vizinho": "H1"
+        },
+        {
+          "nome": "e1",
+          "ip": "10.0.14.1",
+          "mac": "BB:00:00:00:01:01",
+          "vizinho": "R4"
+        },
+        {
+          "nome": "e2",
+          "ip": "10.0.12.1",
+          "mac": "BB:00:00:00:01:02",
+          "vizinho": "R2"
+        }
+      ]
+    },
+    {
+      "nome": "R2",
+      "tipo": "roteador",
+      "interfaces": [
+        {
+          "nome": "e0",
+          "ip": "10.0.12.2",
+          "mac": "BB:00:00:00:02:00",
+          "vizinho": "R1"
+        },
+        {
+          "nome": "e1",
+          "ip": "10.0.23.2",
+          "mac": "BB:00:00:00:02:01",
+          "vizinho": "R3"
+        },
+        {
+          "nome": "e2",
+          "ip": "10.0.2.1",
+          "mac": "BB:00:00:00:02:02",
+          "vizinho": "H3"
+        }
+      ]
+    },
+    {
+      "nome": "R3",
+      "tipo": "roteador",
+      "interfaces": [
+        {
+          "nome": "e0",
+          "ip": "10.0.34.3",
+          "mac": "BB:00:00:00:03:00",
+          "vizinho": "R4"
+        },
+        {
+          "nome": "e1",
+          "ip": "10.0.23.3",
+          "mac": "BB:00:00:00:03:01",
+          "vizinho": "R2"
+        },
+        {
+          "nome": "e2",
+          "ip": "10.0.3.1",
+          "mac": "BB:00:00:00:03:02",
+          "vizinho": "H4"
+        }
+      ]
+    },
+    {
+      "nome": "R4",
+      "tipo": "roteador",
+      "interfaces": [
+        {
+          "nome": "e0",
+          "ip": "10.0.14.4",
+          "mac": "BB:00:00:00:04:00",
+          "vizinho": "R1"
+        },
+        {
+          "nome": "e1",
+          "ip": "10.0.34.4",
+          "mac": "BB:00:00:00:04:01",
+          "vizinho": "R3"
+        }
+      ]
+    }
+  ],
+  "enlaces": [
+    {
+      "a": "H1",
+      "b": "R1",
+      "custo": 0
+    },
+    {
+      "a": "H2",
+      "b": "R1",
+      "custo": 0
+    },
+    {
+      "a": "R1",
+      "b": "R4",
+      "custo": 1
+    },
+    {
+      "a": "R1",
+      "b": "R2",
+      "custo": 1
+    },
+    {
+      "a": "R4",
+      "b": "R3",
+      "custo": 1
+    },
+    {
+      "a": "R2",
+      "b": "R3",
+      "custo": 2
+    },
+    {
+      "a": "R2",
+      "b": "H3",
+      "custo": 0
+    },
+    {
+      "a": "R3",
+      "b": "H4",
+      "custo": 0
+    },
+    {
+      "a": "R3",
+      "b": "H5",
+      "custo": 0
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+```mermaid
+graph LR
+subgraph __n0 ["`Estrutura`"]
+subgraph __n1 ["`Rede 10.0.1.0/24`"]
+__1{"`R1`"}
+__5{"`H1 :: 10.0.1.10`"}
+__1 R1H1@---- __5
+__6{"`H2 :: 10.0.1.11`"}
+__1 R1H2@---- __6
+end
+__1 R1R4@---- __4
+__1 R1R2@---- __2
+subgraph __n2 ["`Rede 10.0.2.0/24`"]
+__2{"`R2`"}
+__7{"`H3 :: 10.0.2.10`"}
+__2 R2H3@---- __7
+end
+__2 R2R3@---- __3
+subgraph __n3 ["`Rede 10.0.3.0/24`"]
+__3{"`R3`"}
+__8{"`H4 :: 10.0.3.10`"}
+__3 R3H4@---- __8
+__9{"`H5 :: 10.0.3.11`"}
+__3 R3H5@---- __9
+end
+__3 R3R4@---- __4
+subgraph __n4 ["`Rede 10.0.4.0/24`"]
+__4{"`R4`"}
+end
+end
+linkStyle H1R1 stroke:red;
+linkStyle R1R2 stroke:red;
+linkStyle R2R3 stroke:red;
+linkStyle R3H4 stroke:red;
+```
